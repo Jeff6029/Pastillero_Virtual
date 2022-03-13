@@ -6,26 +6,23 @@
 </template>
 
 <script>
-
 export default {
-  name: 'Home',
+  name: "Home",
   data() {
     return {
-      info: {}
-    }
+      info: {},
+    };
   },
-  mounted() {
-    this.loadData()
-  },
-  methods: {
-    async loadData() {
-      const response = await fetch('http://localhost:5000/api/info')
-      this.info = await response.json()
-    }
-  }
-
-
-}
+  // mounted() {
+  //   this.loadData();
+  // },
+  // methods: {
+  //   async loadData() {
+  //     const response = await fetch('http://localhost:5000/api/info')
+  //     this.info = await response.json()
+  //   }
+  // }
+};
 </script>
 
 <style scoped>
