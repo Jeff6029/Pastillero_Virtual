@@ -7,7 +7,7 @@
   <section class="medicines-list">
     <article
       class="medicine-box"
-      v-for="medicine of this.all_medicines"
+      v-for="medicine of filteredMedicines"
       :key="medicine.id"
     >
       <header>
@@ -34,14 +34,14 @@ export default {
     this.loadData();
   },
   computed: {
-    // filteredMedicines() {
-    //   const filterMedicine = this.all_medicines.filter((medicine) => medicine);
-    //   return filterMedicine;
-    // },
+    filteredMedicines() {
+      const filterMedicine = this.all_medicines.filter((medicine) => medicine);
+      return filterMedicine;
+    },
   },
   methods: {
     async loadData() {
-      const response = await fetch("http://localhost:5000/api/medicines");
+      const response = await fetch("http://localhost:8081/api/medicines");
       this.all_medicines = await response.json();
     },
   },
