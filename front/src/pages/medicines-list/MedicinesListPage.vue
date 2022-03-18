@@ -1,27 +1,24 @@
 <template>
-  <h1>Mis Medicamentos</h1>
+  <h1>Mis Medicamentos ( {{ this.all_medicines.length }} )</h1>
   <nav class="area-btns">
     <button>Añadir Medicamento</button>
     <button>Calendario</button>
   </nav>
   <section class="medicines-list">
-    <article class="medicine-box">
+    <article
+      class="medicine-box"
+      v-for="medicine of this.all_medicines"
+      :key="medicine.id"
+    >
       <header>
-        <h3>Paracetamol</h3>
+        <h3>{{ medicine.name_medicine }}</h3>
         <button>+ info</button>
       </header>
-      <p>Tipo: Pastillas</p>
-      <p>Dosis: 2 veces por semana</p>
-      <p>Fecha Fin: 30/06/2022</p>
-    </article>
-    <article class="medicine-box">
-      <header>
-        <h3>Bephantol</h3>
-        <button>+ info</button>
-      </header>
-      <p>Tipo: Crema</p>
-      <p>Dosis: 3 veces por semana</p>
-      <p>Fecha Fin: 30/05/2022</p>
+      <ul>
+        <li>Tipo: {{ medicine.type_medicine }}</li>
+        <li>Dosis: {{ medicine.dosage }}</li>
+        <li>Fecha Fin: {{ medicine.end_date }}</li>
+      </ul>
     </article>
   </section>
 </template>
@@ -30,18 +27,24 @@ export default {
   name: "MedicinesList",
   data() {
     return {
-      info: {},
+      all_medicines: {},
     };
   },
-  // mounted() {
-  //   this.loadData();
-  // },
-  // methods: {
-  //   async loadData() {
-  //     const response = await fetch('http://localhost:5000/api/info')
-  //     this.info = await response.json()
-  //   }
-  // }
+  mounted() {
+    this.loadData();
+  },
+  computed: {
+    // filteredMedicines() {
+    //   const filterMedicine = this.all_medicines.filter((medicine) => medicine);
+    //   return filterMedicine;
+    // },
+  },
+  methods: {
+    async loadData() {
+      const response = await fetch("http://localhost:5000/api/medicines");
+      this.all_medicines = await response.json();
+    },
+  },
 };
 </script>
 <style scoped>
@@ -54,7 +57,6 @@ body {
   width: 100vw;
 }
 .area-btns {
-  /* border: 2px solid #42b983; */
   padding: 0 3em;
   margin: 1em 0;
   display: flex;
@@ -68,5 +70,12 @@ body {
   margin: 1em 0;
   display: flex;
   justify-content: space-between;
+}
+
+.medicine-box > ul > li {
+  list-style: none;
+  text-align: left;
+  margin: 0 3em;
+  margin-bottom: 0.4em;
 }
 </style>
