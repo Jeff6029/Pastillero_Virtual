@@ -1,5 +1,5 @@
 <template>
-  <h1>Mis Medicamentos ( {{ this.all_medicines.length }} )</h1>
+  <h1>Mis Medicamentos ( {{ this.filteredMedicines.length }} )</h1>
   <nav class="area-btns">
     <button>Añadir Medicamento</button>
     <button>Calendario</button>
@@ -7,7 +7,7 @@
   <section class="medicines-list">
     <article
       class="medicine-box"
-      v-for="medicine of filteredMedicines"
+      v-for="medicine of this.filteredMedicines"
       :key="medicine.id"
     >
       <header>
@@ -27,7 +27,7 @@ export default {
   name: "MedicinesList",
   data() {
     return {
-      all_medicines: {},
+      all_medicines: [],
     };
   },
   mounted() {
