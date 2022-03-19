@@ -66,15 +66,14 @@ class MedicineRepository:
         return list_medicines
 
     def get_by_id(self, id):
-        sql = """SELECT * FROM medicines WHERE id = :id"""
+        sql = """SELECT * FROM medicines WHERE id_medicine=:id"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, {"id": id})
+        cursor.execute(sql,{"id": id})
 
         data = cursor.fetchone()
-
         medicine = Medicine(**data)
-        print(medicine)
+
         return medicine
 
     def save(self, medicine):

@@ -22,4 +22,9 @@ def create_app(repositories):
         all_medicines = repositories["medicines"].get_all()
         return object_to_json(all_medicines)
 
+    @app.route("/api/medicines/<id>", methods=["GET"])
+    def medicines_get_by_id(id):
+        one_medicine = repositories["medicines"].get_by_id(id)
+        return object_to_json(one_medicine)
+
     return app
