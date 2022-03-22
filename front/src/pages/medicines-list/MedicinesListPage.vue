@@ -12,7 +12,8 @@
     >
       <header>
         <h3>{{ medicine.name_medicine }}</h3>
-        <button>+ info</button>
+
+        <router-link to="/InfoMedicine"><button>+ info</button></router-link>
       </header>
       <ul>
         <li>Tipo: {{ medicine.type_medicine }}</li>

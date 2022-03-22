@@ -12,9 +12,9 @@ const routes = [
     component: () => import('@/pages/medicines-list/MedicinesListPage.vue'),
   },
   {
-    path: '/about',
-    name: 'About',
-    component: () => import('@/pages/about/AboutPage.vue'),
+    path: '/infomedicine',
+    name: 'InfoMedicine',
+    component: () => import('@/pages/info-medicine/InfoMedicinePage.vue'),
   },
 ]
 
