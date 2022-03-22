@@ -7,13 +7,13 @@ const routes = [
     component: () => import('@/pages/home/HomePage.vue'),
   },
   {
-    path: '/medicineslist',
-    name: 'MedicinesList',
+    path: '/medicines',
+    name: 'MedicinesListPage',
     component: () => import('@/pages/medicines-list/MedicinesListPage.vue'),
   },
   {
-    path: '/infomedicine',
-    name: 'InfoMedicine',
+    path: '/medicines/:id',
+    name: 'MedicineDetailPage',
     component: () => import('@/pages/info-medicine/InfoMedicinePage.vue'),
   },
 ]

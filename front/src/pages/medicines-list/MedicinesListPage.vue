@@ -12,10 +12,17 @@
     >
       <header>
         <h3>{{ medicine.name_medicine }}</h3>
-
-        <router-link to="/InfoMedicine"><button>+ info</button></router-link>
+        <router-link
+          :to="{
+            name: 'MedicineDetailPage',
+            params: { id: `${medicine.id_medicine}` },
+          }"
+        >
+          <button>+ info {{ medicine.id }}</button>
+        </router-link>
       </header>
       <ul>
+        <li>id: {{ medicine.id_medicine }} @click="openInfoMedicinePage(medicine)" </li>
         <li>Tipo: {{ medicine.type_medicine }}</li>
         <li>Dosis: {{ medicine.dosage }}</li>
         <li>Fecha Fin: {{ medicine.end_date }}</li>
@@ -23,7 +30,9 @@
     </article>
   </section>
 </template>
+
 <script>
+import config from "@/config.js";
 export default {
   name: "MedicinesList",
   data() {
@@ -42,12 +51,16 @@ export default {
   },
   methods: {
     async loadData() {
-      const response = await fetch("http://localhost:8081/api/medicines");
+      const response = await fetch(`${config.API_PATH}/medicines`);
       this.all_medicines = await response.json();
     },
+    // openInfoMedicinePage(medicine) {
+    //   this.$router.push("/medicines/" + medicine.id_medicine);
+    // },
   },
 };
 </script>
+
 <style scoped>
 * {
   padding: 0;
