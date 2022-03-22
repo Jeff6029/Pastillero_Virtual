@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/medicines/:id',
     name: 'MedicineDetailPage',
-    component: () => import('@/pages/info-medicine/InfoMedicinePage.vue'),
+    component: () => import('@/pages/medicine-detail/MedicineDetailPage.vue'),
   },
 ]
 
