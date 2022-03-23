@@ -37,7 +37,7 @@ export default {
   name: "MedicinesList",
   data() {
     return {
-      all_medicines: [],
+      allMedicines: [],
     };
   },
   mounted() {
@@ -45,18 +45,15 @@ export default {
   },
   computed: {
     filteredMedicines() {
-      const filterMedicine = this.all_medicines.filter((medicine) => medicine);
+      const filterMedicine = this.allMedicines.filter((medicine) => medicine);
       return filterMedicine;
     },
   },
   methods: {
     async loadData() {
       const response = await fetch(`${config.API_PATH}/medicines`);
-      this.all_medicines = await response.json();
+      this.allMedicines = await response.json();
     },
-    // openInfoMedicinePage(medicine) {
-    //   this.$router.push("/medicines/" + medicine.id_medicine);
-    // },
   },
 };
 </script>
