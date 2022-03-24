@@ -22,7 +22,6 @@
         </router-link>
       </header>
       <ul>
-        <li>id: {{ medicine.id_medicine }} @click="openInfoMedicinePage(medicine)" </li>
         <li>Tipo: {{ medicine.type_medicine }}</li>
         <li>Dosis: {{ medicine.dosage }}</li>
         <li>Fecha Fin: {{ medicine.end_date }}</li>
@@ -75,6 +74,8 @@ body {
 }
 .medicine-box {
   border: 2px solid #42b983;
+  margin: 3px 0;
+  overflow: scroll;
 }
 .medicine-box > header {
   padding: 0 2em;

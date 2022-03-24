@@ -5,9 +5,9 @@
         <h2>{{ medicine.name_medicine }}</h2>
       </header>
       <ul>
-        <li>id: {{ medicine.id_medicine }}</li>
         <li>Tipo: {{ medicine.type_medicine }}</li>
         <li>Dosis: {{ medicine.dosage }}</li>
+
         <li>Fecha Fin: {{ medicine.end_date }}</li>
       </ul>
     </article>
@@ -43,8 +43,15 @@ export default {
   margin: 0;
   box-sizing: border-box;
 }
-.medicine-box{
+.medicines-list{
+	margin: 10vh auto ;
+	width: 60vw;
+	height: 50vh;
 	border: 1px solid #42b983;
+	border-radius: 12px;
+	display: grid;
+	place-items: center;
+	overflow: auto;
 }
 
 .medicine-box > ul > li {
