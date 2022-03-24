@@ -1,7 +1,7 @@
 <template>
   <h1>Mis Medicamentos ( {{ this.filteredMedicines.length }} )</h1>
   <nav class="area-btns">
-    <button>Añadir Medicamento</button>
+    <button>Añadir +</button>
     <button>Calendario</button>
   </nav>
   <section class="medicines-list">
@@ -66,16 +66,25 @@ export default {
 body {
   width: 100vw;
 }
+.medicines-list {
+  display: grid;
+  place-items: center;
+}
 .area-btns {
-  padding: 0 3em;
-  margin: 1em 0;
+  width: 350px;
+  padding: 0 2.8em;
+  margin: 0.8em auto;
   display: flex;
+  align-items: center;
   justify-content: space-between;
 }
+.area-btns > button {
+  padding: 0.5em;
+}
 .medicine-box {
+  width: 300px;
   border: 2px solid #42b983;
   margin: 3px 0;
-  overflow: scroll;
 }
 .medicine-box > header {
   padding: 0 2em;
