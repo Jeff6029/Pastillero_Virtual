@@ -2,7 +2,13 @@ medicine_01 = {
     "id_medicine": "0050",
     "name_medicine": "Paracetamol",
     "type_medicine": "Pills",
-    "dosage": "2 veces por semana",
+    "description": "Tomarlo con agua fria",
+    "dosage": {
+        "dosages_times": "2 veces por semana",
+        "hour_dosage": "08:00",
+        "days_dosage": "['Mar', 'Vier']",
+    },
+    "start_date": "2022-03-01",
     "end_date": "2022-04-01",
 }
 
@@ -10,7 +16,13 @@ medicine_02 = {
     "id_medicine": "0051",
     "name_medicine": "Bepanthol",
     "type_medicine": "Cream",
-    "dosage": "3 veces por semana",
+    "description":"Aplicarlo suavemente",
+    "dosage": {
+        "dosages_times": "3 veces por semana",
+        "hour_dosage": "09:00",
+        "days_dosage": "['Mar', 'Vier']",
+    },
+    "start_date": "2022-03-02",
     "end_date": "2022-05-01",
 }
 
@@ -18,7 +30,13 @@ medicine_03 = {
     "id_medicine": "0052",
     "name_medicine": "Ibuprofeno",
     "type_medicine": "Pills",
-    "dosage": "3 veces por semana",
+    "description":"Tomarlo con agua fria",
+    "dosage": {
+        "dosages_times": "3 veces por semana",
+        "hour_dosage": "14:00",
+        "days_dosage": "['Mar', 'Vier']",
+    },
+    "start_date": "2022-03-03",
     "end_date": "2022-06-01",
 }
 
@@ -26,11 +44,18 @@ medicine_04 = {
     "id_medicine": "0053",
     "name_medicine": "Aquoral Monodosis",
     "type_medicine": "eye_drops",
-    "dosage": "3 veces por semana",
+    "description":"Aplicar 3 gotas",
+    "dosage": {
+        "dosages_times": "2 veces por semana",
+        "hour_dosage": "15:00",
+        "days_dosage": "['Mar', 'Vier']",
+    },
+    "start_date": "2022-03-04",
     "end_date": "2022-05-02",
 }
 
 
+# =======================================================================
 # dict_prescription = {
 #     "prescription": {
 #         "id_medicine": "0050",
