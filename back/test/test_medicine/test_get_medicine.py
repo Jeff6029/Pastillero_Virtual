@@ -13,7 +13,7 @@ def test_should_return_empty_list():
     assert response.json == []
 
 
-def test_should_return_all_medicines():
+def test_should_return_all_complete_medicines():
     medicine_repository = MedicineRepository(temp_file())
     app = create_app(repositories={"medicines": medicine_repository})
     client = app.test_client()
@@ -22,7 +22,13 @@ def test_should_return_all_medicines():
         id_medicine="0050",
         name_medicine="Paracetamol",
         type_medicine="pill",
-        dosage="2 veces por semana",
+        description="Beber con agua fria",
+        dosage={
+            "dosages_times": "2 veces por semana",
+            "hour_dosage": "08:00",
+            "days_dosage": "['Mar', 'Vier']",
+        },
+        start_date="2022-03-01",
         end_date="2022-04-01",
     )
 
@@ -30,7 +36,13 @@ def test_should_return_all_medicines():
         id_medicine="0051",
         name_medicine="Bepanthol",
         type_medicine="cream",
-        dosage="2 veces por semana",
+        description="Aplicarlo suavemente",
+        dosage={
+            "dosages_times": "2 veces por semana",
+            "hour_dosage": "09:00",
+            "days_dosage": ["Lun", "Juev"],
+        },
+        start_date="2022-04-01",
         end_date="2022-05-01",
     )
 
@@ -44,14 +56,26 @@ def test_should_return_all_medicines():
             "id_medicine": "0050",
             "name_medicine": "Paracetamol",
             "type_medicine": "pill",
-            "dosage": "2 veces por semana",
+            "description": "Beber con agua fria",
+            "dosage": {
+                "dosages_times": "2 veces por semana",
+                "hour_dosage": "08:00",
+                "days_dosage": "['Mar', 'Vier']",
+            },
+            "start_date": "2022-03-01",
             "end_date": "2022-04-01",
         },
         {
             "id_medicine": "0051",
             "name_medicine": "Bepanthol",
             "type_medicine": "cream",
-            "dosage": "2 veces por semana",
+            "description": "Aplicarlo suavemente",
+            "dosage": {
+                "dosages_times": "2 veces por semana",
+                "hour_dosage": "09:00",
+                "days_dosage": ["Lun", "Juev"],
+            },
+            "start_date": "2022-04-01",
             "end_date": "2022-05-01",
         },
     ]
