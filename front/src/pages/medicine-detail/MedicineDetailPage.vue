@@ -4,13 +4,17 @@
     <h2 class="medicine-name">{{ medicine.name_medicine }}</h2>
     <ul>
       <li>Tipo: {{ medicine.type_medicine }}</li>
-      <li>Descripción: "Beber con agüa fria"</li>
-      <li>Dosis: {{ medicine.dosage }}</li>
-      <li>Hora: 8:00</li>
-      <button class="name-of-day" v-for="day of nameOfDays" :key="day.id">
-        {{ day }}
+      <li>Descripción: {{ medicine.description }}</li>
+      <li>Dosis: {{ dosage.dosages_times }}</li>
+      <li>Hora: {{ dosage.hour_dosage }}</li>
+      <button
+        v-for="day of nameOfDays"
+        :class="{ 'name-of-day': day.value }"
+        :key="day.id"
+      >
+        {{ day.name }}
       </button>
-      <li>Fecha Inicio: 2022-01-01</li>
+      <li>Fecha Inicio: {{ medicine.start_date }}</li>
       <li>Fecha Fin: {{ medicine.end_date }}</li>
     </ul>
     <section class="area-btns">
@@ -24,6 +28,7 @@
       </router-link>
     </section>
   </fieldset>
+  {{ $data.dosage }}
 </template>
 
 <script>
@@ -32,21 +37,46 @@ export default {
   name: "MedicineDetail",
   data() {
     return {
-      medicine: {},
       idOfMedicine: this.$route.params.id,
-      nameOfDays: ["L", "M", "M", "J", "V", "S", "D"],
-      daysOfMedicine: [],
+      medicine: {},
+      dosage: {},
+      nameOfDays: [
+        { name: "Lun", value: false },
+        { name: "Mar", value: false },
+        { name: "Mier", value: false },
+        { name: "Juev", value: false },
+        { name: "Vier", value: false },
+        { name: "Sab", value: false },
+        { name: "Dom", value: false },
+      ],
+      daysOfMedicine: ["Mar", "Juev", "Sab"],
     };
   },
   mounted() {
     this.loadData();
   },
+  computed: {},
   methods: {
     async loadData() {
       const response = await fetch(
         `${config.API_PATH}/medicines/${this.idOfMedicine}`
       );
-      this.medicine = await response.json();
+      let responseMedicine = await response.json();
+      this.medicine = responseMedicine;
+      this.dosage = responseMedicine.dosage;
+    },
+    printDays() {
+      let array1 = this.nameOfDays;
+      let array2 = this.daysOfMedicine;
+      for (let day of array2) {
+        for (let compare of array1) {
+          if (day === compare.name) {
+            compare.value = true;
+          }
+        }
+      }
+      console.table(array1);
+      return array1;
     },
   },
 };
@@ -60,7 +90,7 @@ export default {
 }
 .medicines-box {
   margin: 10vh auto;
-  width: 60vw;
+  width: 70vw;
   height: 65vh;
   border: 1px solid #42b983;
   border-radius: 12px;
@@ -83,6 +113,10 @@ button {
   border: none;
   margin: 2px;
   padding: 2px;
+}
+
+.name-of-day {
+  background-color: #42b983;
 }
 
 .area-btns {
