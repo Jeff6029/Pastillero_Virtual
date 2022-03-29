@@ -48,7 +48,6 @@ export default {
         { name: "Sáb", value: false },
         { name: "Dom", value: false },
       ],
-      daysOfMedicine: ["Mar", "Juev", "Sab"],
     };
   },
   mounted() {
@@ -100,6 +99,9 @@ export default {
 .medicine-name {
   margin: 0.3em;
 }
+span {
+  font-weight: bolder;
+}
 
 ul > li {
   list-style: none;
@@ -118,6 +120,7 @@ button {
 .name-of-day {
   margin-bottom: 0.5em;
   color: white;
+  font-weight: bold;
   background-color: #42b983;
 }
 
