@@ -23,7 +23,7 @@
       </header>
       <ul>
         <li>Tipo: {{ medicine.type_medicine }}</li>
-        <!-- <li>Dosis: {{ dosage.dosages_times }}</li> -->
+        <li>Descripción: {{ medicine.description }}</li>
         <li>Fecha Fin: {{ medicine.end_date }}</li>
       </ul>
     </article>
@@ -37,7 +37,7 @@ export default {
   data() {
     return {
       allMedicines: [],
-      dosage: {},
+      newDosage: [],
     };
   },
   mounted() {
@@ -52,8 +52,8 @@ export default {
   methods: {
     async loadData() {
       const response = await fetch(`${config.API_PATH}/medicines`);
-      this.allMedicines = await response.json();
-      this.dosage = this.allMedicines.dosage;
+      const allResponse = await response.json();
+      this.allMedicines = allResponse;
     },
   },
 };
