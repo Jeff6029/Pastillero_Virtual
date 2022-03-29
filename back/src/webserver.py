@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, request
 from flask_cors import CORS
 
 from src.lib.utils import object_to_json
+from src.domain.medicine import Medicine
 
 
 def create_app(repositories):
@@ -21,6 +22,14 @@ def create_app(repositories):
     def medicines_get_all():
         all_medicines = repositories["medicines"].get_all()
         return object_to_json(all_medicines)
+
+    @app.route("/api/medicines", methods=["POST"])
+    def medicines_post():
+        body = request.json
+        medicine = Medicine(**body)
+        repositories["medicines"].save(medicine)
+
+        return ""
 
     @app.route("/api/medicines/<id>", methods=["GET"])
     def medicines_get_by_id(id):
