@@ -3,10 +3,10 @@
     <legend>+ Información:</legend>
     <h2 class="medicine-name">{{ medicine.name_medicine }}</h2>
     <ul>
-      <li>Tipo: {{ medicine.type_medicine }}</li>
-      <li>Descripción: {{ medicine.description }}</li>
-      <li>Dosis: {{ dosage.dosages_times }}</li>
-      <li>Hora: {{ dosage.hour_dosage }}</li>
+      <li><span>Tipo:</span> {{ medicine.type_medicine }}</li>
+      <li><span>Descripción:</span> {{ medicine.description }}</li>
+      <li><span>Dosis:</span> {{ dosage.dosages_times }}</li>
+      <li><span>Hora:</span> {{ dosage.hour_dosage }}</li>
       <button
         v-for="day of nameOfDays"
         :class="{ 'name-of-day': day.value }"
@@ -14,8 +14,8 @@
       >
         {{ day.name }}
       </button>
-      <li>Fecha Inicio: {{ medicine.start_date }}</li>
-      <li>Fecha Fin: {{ medicine.end_date }}</li>
+      <li><span>Fecha Inicio:</span> {{ medicine.start_date }}</li>
+      <li><span>Fecha Fin:</span> {{ medicine.end_date }}</li>
     </ul>
     <section class="area-btns">
       <router-link to="/medicines">
@@ -28,7 +28,6 @@
       </router-link>
     </section>
   </fieldset>
-  {{ $data.dosage }}
 </template>
 
 <script>
@@ -64,11 +63,12 @@ export default {
       let responseMedicine = await response.json();
       this.medicine = responseMedicine;
       this.dosage = responseMedicine.dosage;
+      let daysReceived = responseMedicine.dosage.days_dosage;
+      this.printDays(daysReceived);
     },
-    printDays() {
+    printDays(array) {
       let array1 = this.nameOfDays;
-      let array2 = this.daysOfMedicine;
-      for (let day of array2) {
+      for (let day of array) {
         for (let compare of array1) {
           if (day === compare.name) {
             compare.value = true;
@@ -76,7 +76,6 @@ export default {
         }
       }
       console.table(array1);
-      return array1;
     },
   },
 };
@@ -106,21 +105,20 @@ ul > li {
   list-style: none;
   text-align: center;
   margin: 0 3em;
-  margin-bottom: 0.4em;
+  margin-bottom: 0.3em;
 }
 button {
+  color: #9ea1a0ea;
   background-color: transparent;
   border: none;
-  margin: 2px;
-  padding: 2px;
+  margin: 0.25em;
+  padding: 0.25em;
 }
 
 .name-of-day {
-  background-color: #42b983;
-}
-
-.area-btns {
   margin-bottom: 0.5em;
+  color: white;
+  background-color: #42b983;
 }
 
 .label-input-back,

@@ -1,5 +1,5 @@
 <template>
-  <h1>Mis Medicamentos ( {{ this.filteredMedicines.length }} )</h1>
+  <h1>Mis Medicamentos</h1>
   <nav class="area-btns">
     <button>Añadir +</button>
     <button>Calendario</button>
@@ -18,7 +18,7 @@
             params: { id: `${medicine.id_medicine}` },
           }"
         >
-          <button>+ info {{ medicine.id }}</button>
+          <button class="btn-info">+ info {{ medicine.id }}</button>
         </router-link>
       </header>
       <ul>
@@ -82,6 +82,7 @@ body {
 }
 .area-btns > button {
   padding: 0.5em;
+  cursor: pointer;
 }
 .medicine-box {
   width: 300px;
@@ -93,6 +94,9 @@ body {
   margin: 1em 0;
   display: flex;
   justify-content: space-between;
+}
+.btn-info {
+  cursor: pointer;
 }
 
 .medicine-box > ul > li {
