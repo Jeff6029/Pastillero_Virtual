@@ -34,7 +34,7 @@ medicine_02 = Medicine(
     dosage={
         "dosages_times": "3 veces por semana",
         "hour_dosage": "09:00",
-        "days_dosage": ["Mar", "Juev", "Sab"],
+        "days_dosage": ["Mar", "Juev", "Sáb"],
     },
     start_date="2022-03-02",
     end_date="2022-05-01",
@@ -47,7 +47,7 @@ medicine_03 = Medicine(
     dosage={
         "dosages_times": "3 veces por semana",
         "hour_dosage": "14:00",
-        "days_dosage": ["Lun", "Mier", "Vier"],
+        "days_dosage": ["Lun", "Miér", "Vier"],
     },
     start_date="2022-03-03",
     end_date="2022-06-01",
@@ -60,7 +60,7 @@ medicine_04 = Medicine(
     dosage={
         "dosages_times": "2 veces por semana",
         "hour_dosage": "15:00",
-        "days_dosage": ["Mier", "Dom"],
+        "days_dosage": ["Miér", "Dom"],
     },
     start_date="2022-03-04",
     end_date="2022-05-02",

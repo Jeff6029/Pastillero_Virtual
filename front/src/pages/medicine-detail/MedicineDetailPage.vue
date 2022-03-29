@@ -42,10 +42,10 @@ export default {
       nameOfDays: [
         { name: "Lun", value: false },
         { name: "Mar", value: false },
-        { name: "Mier", value: false },
+        { name: "Miér", value: false },
         { name: "Juev", value: false },
         { name: "Vier", value: false },
-        { name: "Sab", value: false },
+        { name: "Sáb", value: false },
         { name: "Dom", value: false },
       ],
       daysOfMedicine: ["Mar", "Juev", "Sab"],
