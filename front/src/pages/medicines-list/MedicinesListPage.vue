@@ -1,7 +1,7 @@
 <template>
   <h1>Mis Medicamentos</h1>
   <nav class="area-btns">
-    <button>Añadir +</button>
+    <button @click="onClickMedicinesAdd">Añadir +</button>
     <button>Calendario</button>
   </nav>
   <section class="medicines-list">
@@ -18,7 +18,7 @@
             params: { id: `${medicine.id_medicine}` },
           }"
         >
-          <button class="btn-info">+ info {{ medicine.id }}</button>
+          <button class="btn-info">+ Info {{ medicine.id }}</button>
         </router-link>
       </header>
       <ul>
@@ -50,6 +50,9 @@ export default {
     },
   },
   methods: {
+    onClickMedicinesAdd() {
+      this.$router.push("/medicinesadd");
+    },
     async loadData() {
       const response = await fetch(`${config.API_PATH}/medicines`);
       const allResponse = await response.json();

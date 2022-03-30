@@ -16,6 +16,11 @@ const routes = [
     name: 'MedicineDetailPage',
     component: () => import('@/pages/medicine-detail/MedicineDetailPage.vue'),
   },
+  {
+    path: '/medicinesadd',
+    name: 'MedicinesAddPage',
+    component: () => import('@/pages/medicines-add/MedicinesAddPage.vue'),
+  },
 ]
 
 const router = createRouter({
