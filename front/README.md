@@ -4,6 +4,7 @@
 
 ```
 npm install
+npm install uuid
 ```
 
 ### Ejecutar servidor de desarrollo

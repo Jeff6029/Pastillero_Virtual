@@ -6,7 +6,6 @@
       <li><span>Tipo:</span> {{ medicine.type_medicine }}</li>
       <li><span>Descripción:</span> {{ medicine.description }}</li>
       <li><span>Dosis:</span> {{ dosage.dosages_times }}</li>
-      <li><span>Hora:</span> {{ dosage.hour_dosage }}</li>
       <button
         v-for="day of nameOfDays"
         :class="{ 'name-of-day': day.value }"
@@ -14,6 +13,7 @@
       >
         {{ day.name }}
       </button>
+      <li><span>Hora:</span> {{ dosage.hour_dosage }} hrs.</li>
       <li><span>Fecha Inicio:</span> {{ medicine.start_date }}</li>
       <li><span>Fecha Fin:</span> {{ medicine.end_date }}</li>
     </ul>
@@ -74,7 +74,6 @@ export default {
           }
         }
       }
-      console.table(array1);
     },
   },
 };
