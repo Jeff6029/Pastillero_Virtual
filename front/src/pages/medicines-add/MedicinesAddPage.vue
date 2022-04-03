@@ -63,6 +63,7 @@
   </fieldset>
 </template>
 
+
 <script>
 import config from "@/config";
 import { v4 as uuidv4 } from "uuid";
@@ -112,6 +113,7 @@ export default {
         if (someday === day.name) {
           if (day.value === false) {
             day.value = true;
+            this.listDays.push(day.name);
             return true;
           } else {
             day.value = false;
@@ -119,14 +121,6 @@ export default {
           }
         }
       }
-    },
-    readOnlyNames() {
-      const printDays = this.nameOfDays.filter((dayAndValue) => {
-        if (dayAndValue.value) {
-          return dayAndValue;
-        }
-      });
-      this.listDays = printDays.map((day) => day.name);
     },
     onClickToReturnListMedicines() {
       this.$router.push("/medicines");
