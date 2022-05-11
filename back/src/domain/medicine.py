@@ -104,7 +104,7 @@ class MedicineRepository:
         return medicine
 
     def get_by_date(self, date):
-        sql = """SELECT * FROM medicines WHERE start_date  <= :date AND :date <= end_date"""
+        sql = """SELECT * FROM medicines WHERE start_date  <= :date AND :date <= end_date ORDER BY end_date DESC"""
         conn = self.create_conn()
         cursor = conn.cursor()
         cursor.execute(sql, {"date": date})
