@@ -21,6 +21,11 @@ const routes = [
     name: 'MedicinesAddPage',
     component: () => import('@/pages/medicines-add/MedicinesAddPage.vue'),
   },
+  {
+    path: '/medicines-schedule/:date',
+    name: 'MedicinesSchedulePage',
+    component: () => import('@/pages/medicines-schedule/MedicinesSchedulePage.vue'),
+  },
 ]
 
 const router = createRouter({

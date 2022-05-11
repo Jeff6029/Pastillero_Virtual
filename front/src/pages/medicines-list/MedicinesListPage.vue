@@ -2,7 +2,7 @@
   <h1>Mis Medicamentos</h1>
   <nav class="area-btns">
     <button @click="onClickMedicinesAdd">Añadir +</button>
-    <button>Horario</button>
+    <button @click="onClickMedicinesSchedule">Horario</button>
   </nav>
   <section class="medicines-list">
     <article
@@ -52,6 +52,11 @@ export default {
   methods: {
     onClickMedicinesAdd() {
       this.$router.push("/medicinesadd");
+    },
+    onClickMedicinesSchedule() {
+      let date = new Date();
+      let today = date.toISOString().split("T")[0];
+      this.$router.push(`/medicines-schedule/${today}`);
     },
     async loadData() {
       const response = await fetch(`${config.API_PATH}/medicines`);
