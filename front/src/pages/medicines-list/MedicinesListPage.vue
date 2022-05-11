@@ -2,7 +2,7 @@
   <h1>Mis Medicamentos</h1>
   <nav class="area-btns">
     <button @click="onClickMedicinesAdd">Añadir +</button>
-    <button>Calendario</button>
+    <button>Horario</button>
   </nav>
   <section class="medicines-list">
     <article

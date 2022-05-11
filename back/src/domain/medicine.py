@@ -103,6 +103,29 @@ class MedicineRepository:
 
         return medicine
 
+    def get_by_date(self, date):
+        sql = """SELECT * FROM medicines WHERE start_date  <= :date AND :date <= end_date"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"date": date})
+
+        data = cursor.fetchall()
+
+        list_medicines = []
+        for item in data:
+            medicine = Medicine(
+                id_medicine=item["id_medicine"],
+                name_medicine=item["name_medicine"],
+                type_medicine=item["type_medicine"],
+                description=item["description"],
+                dosage=json.loads(item["dosage"]),
+                start_date=item["start_date"],
+                end_date=item["end_date"],
+            )
+            # medicine = Medicine(**item)
+            list_medicines.append(medicine)
+        return list_medicines
+
     def save(self, medicine):
         sql = """insert into medicines (
             id_medicine,

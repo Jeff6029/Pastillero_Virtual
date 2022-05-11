@@ -36,4 +36,9 @@ def create_app(repositories):
         one_medicine = repositories["medicines"].get_by_id(id)
         return object_to_json(one_medicine)
 
+    @app.route("/api/medicines/by-date/<date>", methods=["GET"])
+    def medicines_get_by_date(date):
+        validated_medicines = repositories["medicines"].get_by_date(date)
+        return object_to_json(validated_medicines)
+
     return app
