@@ -8,8 +8,10 @@
     <tr v-for="number in hours" :key="number">
       <td class="hour">{{ `${number - 1}` }}:00 hrs.</td>
       <td>{{ filterPerHour(number) }}</td>
+      <!-- <td><MedicineList medicines="filterPerHour(number)" /></td> -->
     </tr>
   </table>
+  {{ this.namesFiltered }}
 </template>
 
 <script>
@@ -20,6 +22,7 @@ export default {
     return {
       listMedicines: [],
       hours: 24,
+      namesFiltered: [],
     };
   },
   mounted() {
@@ -32,6 +35,12 @@ export default {
     },
   },
   methods: {
+    showNames() {
+      let names = this.namesFiltered;
+      for (let name in names) {
+        return name;
+      }
+    },
     filterPerHour(number) {
       const hours_dosage = this.filteredMedicines.filter((medicine) => {
         if (medicine.dosage.hour_dosage.split(":")[0] === `${number}`) {
@@ -41,14 +50,14 @@ export default {
       const names_medicines = hours_dosage.map(
         (medicine) => medicine.name_medicine
       );
+      this.namesFiltered = names_medicines;
       return names_medicines;
     },
-
     async loadData() {
-      // let date = new Date();
-      // let today = date.toISOString().split("T")[0];
+      let date = new Date();
+      let today = date.toISOString().split("T")[0];
       const response = await fetch(
-        `${config.API_PATH}/medicines/by-date/2022-05-02`
+        `${config.API_PATH}/medicines/by-date/${today}`
       );
       const allResponse = await response.json();
       this.listMedicines = allResponse;
