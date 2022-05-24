@@ -86,9 +86,9 @@ def test_should_return_list_medicines():
 
     assert response.status_code == 200
     list_medicines = response.json
-    assert list_medicines[0]["id_medicine"] == "0050"
-    assert list_medicines[0]["start_date"] == "2022-03-15"
-    assert list_medicines[0]["end_date"] == "2022-04-15"
-    assert list_medicines[1]["id_medicine"] == "0051"
-    assert list_medicines[1]["start_date"] == "2022-04-15"
-    assert list_medicines[1]["end_date"] == "2022-05-15"
+    assert list_medicines[0]["id_medicine"] == "0051"
+    assert list_medicines[0]["start_date"] == "2022-04-15"
+    assert list_medicines[0]["end_date"] == "2022-05-15"
+    assert list_medicines[1]["id_medicine"] == "0050"
+    assert list_medicines[1]["start_date"] == "2022-03-15"
+    assert list_medicines[1]["end_date"] == "2022-04-15"
