@@ -33,8 +33,10 @@ export default {
 }
 .medicine-box {
   width: 300px;
+  height: 190px;
   border: 2px solid #42b983;
   margin: 3px 0;
+  border-radius: 10px;
 }
 .medicine-box > header {
   padding: 0 2em;

@@ -7,11 +7,11 @@
     </tr>
     <tr v-for="number in hours" :key="number">
       <td class="hour">{{ `${number - 1}` }}:00 hrs.</td>
-      <td>{{ filterPerHour(number) }}</td>
+      <td>{{ medicineFilterPerHour(number) }}</td>
       <!-- <td><MedicineList medicines="filterPerHour(number)" /></td> -->
     </tr>
   </table>
-  {{ this.namesFiltered }}
+  {{ this.medicinesNamesFiltered }}
 </template>
 
 <script>
@@ -22,7 +22,7 @@ export default {
     return {
       listMedicines: [],
       hours: 24,
-      namesFiltered: [],
+      medicinesNamesFiltered: [],
     };
   },
   mounted() {
@@ -35,23 +35,19 @@ export default {
     },
   },
   methods: {
-    showNames() {
-      let names = this.namesFiltered;
-      for (let name in names) {
-        return name;
-      }
-    },
-    filterPerHour(number) {
-      const hours_dosage = this.filteredMedicines.filter((medicine) => {
-        if (medicine.dosage.hour_dosage.split(":")[0] === `${number}`) {
+    medicineFilterPerHour(number) {
+      const listMedicinesPerHour = (medicine) => {
+        let medicineDosageHour = medicine.dosage.hour_dosage.split(":")[0];
+        if (medicineDosageHour === `${number}`) {
           return medicine;
         }
-      });
-      const names_medicines = hours_dosage.map(
+      };
+      const hoursDosage = this.filteredMedicines.filter(listMedicinesPerHour);
+      const namesMedicines = hoursDosage.map(
         (medicine) => medicine.name_medicine
       );
-      this.namesFiltered = names_medicines;
-      return names_medicines;
+      this.medicinesNamesFiltered = namesMedicines;
+      return namesMedicines;
     },
     async loadData() {
       let date = new Date();

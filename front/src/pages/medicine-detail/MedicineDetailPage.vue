@@ -18,7 +18,7 @@
       <li><span>Fecha Fin:</span> {{ medicine.end_date }}</li>
     </ul>
     <section class="area-btns">
-      <router-link to="/medicines">
+      <router-link to="/medicines" @click="onDeleteClickMedicine">
         <input type="checkbox" id="input-delete" />
         <label class="label-input-delete" for="input-delete">Eliminar</label>
       </router-link>
@@ -53,19 +53,29 @@ export default {
   mounted() {
     this.loadData();
   },
-  computed: {},
   methods: {
     async loadData() {
-      const response = await fetch(
-        `${config.API_PATH}/medicines/${this.idOfMedicine}`
-      );
+      const endPoint = `${config.API_PATH}/medicines/${this.idOfMedicine}`;
+      const response = await fetch(endPoint);
       let responseMedicine = await response.json();
+
       this.medicine = responseMedicine;
       this.dosage = responseMedicine.dosage;
       let daysReceived = responseMedicine.dosage.days_dosage;
-      this.printDays(daysReceived);
+      this.paintDaysSelected(daysReceived);
     },
-    printDays(array) {
+    async onDeleteClickMedicine() {
+      const endPoint = `${config.API_PATH}/medicines/${this.idOfMedicine}`;
+      const settings = { method: "DELETE" };
+      if (confirm("¿Deseas eliminar este evento?")) {
+        await fetch(endPoint, settings);
+        console.log("Se ha eliminado la medicina con id: ", this.idOfMedicine);
+      } else {
+        return "";
+      }
+      location.reload(true);
+    },
+    paintDaysSelected(array) {
       let array1 = this.nameOfDays;
       for (let day of array) {
         for (let compare of array1) {
