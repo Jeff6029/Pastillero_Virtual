@@ -6,7 +6,7 @@
   </nav>
   <section class="medicines-list">
     <Medicine
-      v-for="medicine in allMedicines"
+      v-for="medicine in filteredMedicines"
       :key="medicine.id"
       :medicine="medicine"
       class="medicine-box"
