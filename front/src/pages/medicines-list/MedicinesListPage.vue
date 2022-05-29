@@ -5,39 +5,26 @@
     <button @click="onClickMedicinesSchedule">Horario</button>
   </nav>
   <section class="medicines-list">
-    <article
-      class="medicine-box"
-      v-for="medicine of this.filteredMedicines"
+    <Medicine
+      v-for="medicine in allMedicines"
       :key="medicine.id"
-    >
-      <header>
-        <h3>{{ medicine.name_medicine }}</h3>
-        <router-link
-          :to="{
-            name: 'MedicineDetailPage',
-            params: { id: `${medicine.id_medicine}` },
-          }"
-        >
-          <button class="btn-info">+ Info {{ medicine.id }}</button>
-        </router-link>
-      </header>
-      <ul>
-        <li>Tipo: {{ medicine.type_medicine }}</li>
-        <li>Descripción: {{ medicine.description }}</li>
-        <li>Fecha Fin: {{ medicine.end_date }}</li>
-      </ul>
-    </article>
+      :medicine="medicine"
+      class="medicine-box"
+    />
   </section>
 </template>
 
 <script>
 import config from "@/config.js";
+import Medicine from "./Medicine.vue";
 export default {
   name: "MedicinesList",
+  components: {
+    Medicine,
+  },
   data() {
     return {
       allMedicines: [],
-      newDosage: [],
     };
   },
   mounted() {
@@ -91,26 +78,5 @@ body {
 .area-btns > button {
   padding: 0.5em;
   cursor: pointer;
-}
-.medicine-box {
-  width: 300px;
-  border: 2px solid #42b983;
-  margin: 3px 0;
-}
-.medicine-box > header {
-  padding: 0 2em;
-  margin: 1em 0;
-  display: flex;
-  justify-content: space-between;
-}
-.btn-info {
-  cursor: pointer;
-}
-
-.medicine-box > ul > li {
-  list-style: none;
-  text-align: left;
-  margin: 0 3em;
-  margin-bottom: 0.4em;
 }
 </style>
