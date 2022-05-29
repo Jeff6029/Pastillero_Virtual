@@ -13,11 +13,6 @@ def create_app(repositories):
     def hello_world():
         return "...magic!"
 
-    @app.route("/api/info", methods=["GET"])
-    def info_get():
-        info = repositories["info"].get_info()
-        return object_to_json(info)
-
     @app.route("/api/medicines", methods=["GET"])
     def medicines_get_all():
         all_medicines = repositories["medicines"].get_all()
@@ -28,7 +23,6 @@ def create_app(repositories):
         body = request.json
         medicine = Medicine(**body)
         repositories["medicines"].save(medicine)
-
         return ""
 
     @app.route("/api/medicines/<id>", methods=["GET"])
