@@ -159,3 +159,13 @@ class MedicineRepository:
             },
         )
         conn.commit()
+
+    def delete_by_id(self, id):
+        sql = """DELETE FROM medicines WHERE id_medicine = :id"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+
+        cursor.execute(sql, {"id": id})
+
+        conn.commit()
+        cursor.close()
