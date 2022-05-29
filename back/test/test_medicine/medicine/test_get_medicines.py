@@ -53,6 +53,8 @@ def test_should_return_all_complete_medicines():
 
     assert response.status_code == 200
     all_medicines = response.json
+    assert len(all_medicines) == 2
+
     assert all_medicines[0]["id_medicine"] == "0050"
     assert all_medicines[0]["name_medicine"] == "Paracetamol"
     assert all_medicines[0]["type_medicine"] == "pill"
