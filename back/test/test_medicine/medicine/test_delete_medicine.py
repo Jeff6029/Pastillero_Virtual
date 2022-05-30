@@ -4,6 +4,21 @@ from src.webserver import create_app
 from src.domain.medicine import MedicineRepository, Medicine
 
 
+def setup():
+    return ""
+
+
+# def setup():
+#     user_repository = UserRepository(temp_file())
+#     app = create_app(repositories={"users": user_repository})
+#     client = app.test_client()
+
+#     tomas = User(id='user-tomas', name='Tomás', password='el mejor')
+#     user_repository.save(tomas)
+
+#     return client
+
+
 def test_should_delete_medicine_and_return_empty_list():
     medicine_repository = MedicineRepository(temp_file())
     app = create_app(repositories={"medicines": medicine_repository})

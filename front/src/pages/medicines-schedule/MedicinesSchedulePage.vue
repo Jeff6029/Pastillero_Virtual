@@ -52,9 +52,9 @@ export default {
     async loadData() {
       let date = new Date();
       let today = date.toISOString().split("T")[0];
-      const response = await fetch(
-        `${config.API_PATH}/medicines/by-date/${today}`
-      );
+      let endpoint = `${config.API_PATH}/medicines/by-date/${today}`;
+
+      const response = await fetch(endpoint);
       const allResponse = await response.json();
       this.listMedicines = allResponse;
     },
