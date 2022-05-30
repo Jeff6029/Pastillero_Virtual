@@ -30,10 +30,12 @@ def create_app(repositories):
         one_medicine = repositories["medicines"].get_by_id(id)
         return object_to_json(one_medicine)
 
-    # @app.route("/api/medicines/<id>", methods=["PUT"])
-    # def medicines_get_by_id(id):
-    #     one_medicine = repositories["medicines"].save(id)
-    #     return object_to_json(one_medicine)
+    @app.route("/api/medicines/<id>", methods=["PUT"])
+    def medicines_put(id):
+        body = request.json
+        medicine = Medicine(**body)
+        repositories["medicines"].save(medicine)
+        return ""
 
     @app.route("/api/medicines/<id>", methods=["DELETE"])
     def medicine_delete_by_id(id):

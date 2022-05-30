@@ -127,7 +127,7 @@ class MedicineRepository:
         return list_medicines
 
     def save(self, medicine):
-        sql = """insert into medicines (
+        sql = """INSERT OR REPLACE INTO medicines (
             id_medicine,
             name_medicine,
             type_medicine,

@@ -45,7 +45,7 @@ def test_should_update_contact():
         "end_date": "2022-04-01",
     }
 
-    response = client.put("/api/medicines/0050")
+    response = client.put("/api/medicines/0050", json=body)
 
     assert response.status_code == 200
 
