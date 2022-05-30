@@ -23,7 +23,7 @@ def create_app(repositories):
         body = request.json
         medicine = Medicine(**body)
         repositories["medicines"].save(medicine)
-        return ""
+        return "", 200
 
     @app.route("/api/medicines/<id>", methods=["GET"])
     def medicines_get_by_id(id):
@@ -35,7 +35,7 @@ def create_app(repositories):
         body = request.json
         medicine = Medicine(**body)
         repositories["medicines"].save(medicine)
-        return ""
+        return "", 200
 
     @app.route("/api/medicines/<id>", methods=["DELETE"])
     def medicine_delete_by_id(id):
