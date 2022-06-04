@@ -2,11 +2,11 @@
   <dl class="form-add-medicine">
     <dd>
       <span>Nombre: </span>
-      <input type="text" v-model="this.medicine.name_medicine" />
+      <input type="text" v-model="this.medicineInForm.name_medicine" />
     </dd>
     <dd>
       <span>Tipo: </span>
-      <select name="types" v-model="this.medicine.type_medicine">
+      <select name="types" v-model="this.medicineInForm.type_medicine">
         <option hidden value="Select">Elige un tipo</option>
         <option value="Pills">Pastillas</option>
         <option value="Cream">Crema</option>
@@ -18,14 +18,14 @@
       <textarea
         cols="28"
         rows="5"
-        v-model="this.medicine.description"
+        v-model="this.medicineInForm.description"
       ></textarea>
     </dd>
     <dd>
       <span>Dosis:</span>
       <input
         class="input-number"
-        v-model="this.medicine.dosage.dosages_times"
+        v-model="this.medicineInForm.dosage.dosages_times"
         type="number"
         min="0"
         max="7"
@@ -34,7 +34,7 @@
     </dd>
     <dd class="name-days">
       <button
-        @click="onClickNameDay(day.name)"
+        @click="onClickNameDay(day.name) && filterDaysTrue()"
         v-for="day of nameOfDays"
         :key="day.id"
         class="names-days"
@@ -45,15 +45,16 @@
     </dd>
     <dd>
       <span>Hora:</span>
-      <input type="time" v-model="this.medicine.dosage.hour_dosage" /> hrs.
+      <input type="time" v-model="this.medicineInForm.dosage.hour_dosage" />
+      hrs.
     </dd>
     <dd>
       <span>Fecha Inicio:</span>
-      <input type="date" v-model="this.medicine.start_date" />
+      <input type="date" v-model="this.medicineInForm.start_date" />
     </dd>
     <dd>
       <span>Fecha Fin:</span>
-      <input type="date" v-model="this.medicine.end_date" />
+      <input type="date" v-model="this.medicineInForm.end_date" />
     </dd>
   </dl>
 </template>
@@ -73,7 +74,7 @@ export default {
     medicine: {
       handler(newValue) {
         const medicineAsJson = JSON.stringify(newValue);
-        this.medicine = JSON.parse(medicineAsJson);
+        this.medicineInForm = JSON.parse(medicineAsJson);
       },
       inmediate: true,
     },

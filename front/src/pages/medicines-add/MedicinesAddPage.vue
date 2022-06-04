@@ -3,11 +3,12 @@
     <legend>Añadir Medicina:</legend>
     <dl class="form-add-medicine">
       <dd>
-        <span>Nombre: </span> <input type="text" v-model="this.inputName" />
+        <span>Nombre: </span>
+        <input type="text" v-model="this.medicine.name_medicine" />
       </dd>
       <dd>
         <span>Tipo: </span>
-        <select name="types" v-model="this.inputType">
+        <select name="types" v-model="this.medicine.type_medicine">
           <option hidden value="Select">Elige un tipo</option>
           <option value="Pills">Pastillas</option>
           <option value="Cream">Crema</option>
@@ -16,7 +17,11 @@
       </dd>
       <dd>
         <p><span>Descripción:</span></p>
-        <textarea cols="28" rows="5" v-model="this.inputDescription"></textarea>
+        <textarea
+          cols="28"
+          rows="5"
+          v-model="this.medicine.description"
+        ></textarea>
       </dd>
       <dd>
         <span>Dosis:</span>
@@ -31,7 +36,7 @@
       </dd>
       <dd class="name-days">
         <button
-          @click="onClickNameDay(day.name)"
+          @click="onClickNameDay(day.name) && filterDaysTrue()"
           v-for="day of nameOfDays"
           :key="day.id"
           class="names-days"
@@ -41,15 +46,16 @@
         </button>
       </dd>
       <dd>
-        <span>Hora:</span> <input type="time" v-model="this.inputHour" /> hrs.
+        <span>Hora:</span>
+        <input type="time" v-model="this.medicine.dosage.hour_dosage" /> hrs.
       </dd>
       <dd>
         <span>Fecha Inicio:</span>
-        <input type="date" v-model="this.inputInitialDate" />
+        <input type="date" v-model="this.medicine.start_date" />
       </dd>
       <dd>
         <span>Fecha Fin:</span>
-        <input type="date" v-model="this.inputEndDate" />
+        <input type="date" v-model="this.medicine.end_date" />
       </dd>
     </dl>
     <section class="area-btns">
@@ -61,6 +67,10 @@
       </button>
     </section>
   </fieldset>
+  <br />
+  {{ this.medicine.dosage.days_dosage }}
+  <br />
+  {{ nameOfDays }}
 </template>
 
 
@@ -71,14 +81,20 @@ export default {
   name: "MedicinesAdd",
   data() {
     return {
-      inputName: "",
-      inputType: "",
-      inputDescription: "",
+      medicine: {
+        id_medicine: uuidv4(),
+        name_medicine: "",
+        type_medicine: "",
+        description: "",
+        dosage: {
+          dosages_times: "",
+          hour_dosage: "",
+          days_dosage: [],
+        },
+        start_date: "",
+        end_date: "",
+      },
       inputDosage: "",
-      inputHour: "",
-      inputInitialDate: "",
-      inputEndDate: "",
-      listDays: [],
       nameOfDays: [
         { name: "Lun", value: false },
         { name: "Mar", value: false },
@@ -90,8 +106,6 @@ export default {
       ],
     };
   },
-  mounted() {},
-  computed: {},
   methods: {
     isValidInputsMedicine() {
       if (
@@ -112,15 +126,22 @@ export default {
       for (let day of this.nameOfDays) {
         if (someday === day.name) {
           if (day.value === false) {
-            day.value = true;
-            this.listDays.push(day.name);
-            return true;
+            return (day.value = true);
           } else {
-            day.value = false;
-            return false;
+            return (day.value = false);
           }
         }
       }
+    },
+    filterDaysTrue() {
+      const filterOfDaysTrue = this.nameOfDays
+        .filter((i) => {
+          if (i.value === true) {
+            return i.name;
+          }
+        })
+        .map((i) => i.name);
+      this.medicine.dosage.days_dosage = filterOfDaysTrue;
     },
     onClickToReturnListMedicines() {
       this.$router.push("/medicines");
@@ -130,19 +151,10 @@ export default {
         alert("Rellena correctamente los campos");
         return;
       }
-      const addMedicine = {
-        id_medicine: uuidv4(),
-        name_medicine: this.inputName,
-        type_medicine: this.inputType,
-        description: this.inputDescription,
-        dosage: {
-          dosages_times: `${this.inputDosage} veces por semana`,
-          hour_dosage: this.inputHour,
-          days_dosage: this.listDays,
-        },
-        start_date: this.inputInitialDate,
-        end_date: this.inputEndDate,
-      };
+      const addMedicine = this.medicine;
+      addMedicine.id_medicine = uuidv4();
+      addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
+
       const settings = {
         method: "POST",
         body: JSON.stringify(addMedicine),
