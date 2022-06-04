@@ -36,7 +36,7 @@
       </dd>
       <dd class="name-days">
         <button
-          @click="onClickNameDay(day.name) && filterDaysTrue()"
+          @click="onClickNameDay(day.name)"
           v-for="day of nameOfDays"
           :key="day.id"
           class="names-days"
@@ -67,10 +67,6 @@
       </button>
     </section>
   </fieldset>
-  <br />
-  {{ this.medicine.dosage.days_dosage }}
-  <br />
-  {{ nameOfDays }}
 </template>
 
 
@@ -106,6 +102,19 @@ export default {
       ],
     };
   },
+  computed: {
+    filterDaysTrue() {
+      let listDays = this.nameOfDays;
+      const filterOfDaysTrue = listDays
+        .filter((i) => {
+          if (i.value === true) {
+            return i.name;
+          }
+        })
+        .map((i) => i.name);
+      return filterOfDaysTrue;
+    },
+  },
   methods: {
     isValidInputsMedicine() {
       if (
@@ -133,16 +142,7 @@ export default {
         }
       }
     },
-    filterDaysTrue() {
-      const filterOfDaysTrue = this.nameOfDays
-        .filter((i) => {
-          if (i.value === true) {
-            return i.name;
-          }
-        })
-        .map((i) => i.name);
-      this.medicine.dosage.days_dosage = filterOfDaysTrue;
-    },
+
     onClickToReturnListMedicines() {
       this.$router.push("/medicines");
     },
@@ -154,7 +154,7 @@ export default {
       const addMedicine = this.medicine;
       addMedicine.id_medicine = uuidv4();
       addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
-
+      addMedicine.dosage.days_dosage = this.filterDaysTrue;
       const settings = {
         method: "POST",
         body: JSON.stringify(addMedicine),
