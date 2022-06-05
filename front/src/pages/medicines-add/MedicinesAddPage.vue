@@ -71,8 +71,8 @@
 
 
 <script>
-import config from "@/config";
 import { v4 as uuidv4 } from "uuid";
+import config from "@/config";
 export default {
   name: "MedicinesAdd",
   data() {
@@ -118,13 +118,14 @@ export default {
   methods: {
     isValidInputsMedicine() {
       if (
-        this.inputName === "" ||
-        this.inputType === "" ||
-        this.inputDescription === "" ||
+        this.medicine.name_medicine === "" ||
+        this.medicine.type_medicine === "" ||
+        this.medicine.description === "" ||
         this.inputDosage === "" ||
-        this.inputHour === "" ||
-        this.inputInitialDate === "" ||
-        this.inputEndDate === ""
+        this.medicine.dosage.hour_dosage === "" ||
+        this.medicine.dosage.days_dosage === "" ||
+        this.medicine.start_date === "" ||
+        this.medicine.end_date === ""
       ) {
         return false;
       } else {
