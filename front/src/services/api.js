@@ -7,10 +7,19 @@ import config from "@/config";
 
 ///
 
+export async function getMedicines() {   
+    const endPoint = `${config.API_PATH}/medicines`
+    const settings = {method: "GET"};
+    
+    const response = await fetch(endPoint,settings);
+    return await response.json();
+}
+
 export async function getMedicine(id) {   
     const endPoint = `${config.API_PATH}/medicines/${id}`
-    
-    const response = await fetch(endPoint);
+    const settings = {method: "GET"};
+
+    const response = await fetch(endPoint,settings);
     return await response.json();
 }
   
@@ -19,5 +28,5 @@ export async function deleteMedicine(id) {
     const settings = {method: "DELETE"};
 
     const response = await fetch(endPoint, settings);
-    return await response.json();
+    return response;
 }

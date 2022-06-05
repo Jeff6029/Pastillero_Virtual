@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import config from "@/config.js";
+import { getMedicines } from "@/services/api.js";
 import Medicine from "./Medicine.vue";
 export default {
   name: "MedicinesList",
@@ -46,9 +46,8 @@ export default {
       this.$router.push(`/medicines-schedule/${today}`);
     },
     async loadData() {
-      const response = await fetch(`${config.API_PATH}/medicines`);
-      const allResponse = await response.json();
-      this.allMedicines = allResponse;
+      const response = await getMedicines();
+      this.allMedicines = response;
     },
   },
 };

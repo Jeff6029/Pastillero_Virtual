@@ -65,11 +65,13 @@ export default {
     async onDeleteClickMedicine() {
       if (confirm("¿Deseas eliminar este evento?")) {
         await deleteMedicine(this.idOfMedicine);
+        this.$router.push("/medicines");
       } else {
         return "";
       }
       location.reload(true);
     },
+
     paintDaysSelected(array) {
       let array1 = this.nameOfDays;
       for (let day of array) {
