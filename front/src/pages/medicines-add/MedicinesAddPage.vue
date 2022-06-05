@@ -156,6 +156,7 @@ export default {
       addMedicine.id_medicine = uuidv4();
       addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
       addMedicine.dosage.days_dosage = this.filterDaysTrue;
+
       const settings = {
         method: "POST",
         body: JSON.stringify(addMedicine),

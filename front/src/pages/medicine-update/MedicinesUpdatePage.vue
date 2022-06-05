@@ -9,12 +9,15 @@
       </button>
       <button class="btn-save" @click="onSaveClickedMedicine">Guardar</button>
     </section>
+    <MedicineForm :medicine="medicine" :inputDosage="inputDosage" />
   </fieldset>
+  {{ medicine }}
 </template>
 
 
 <script>
 import config from "@/config";
+import { getMedicineById } from "@/services/api.js";
 import MedicineForm from "@/components/MedicineForm.vue";
 
 export default {
@@ -40,7 +43,9 @@ export default {
       listDays: [],
     };
   },
-  mounted() {},
+  mounted() {
+    this.loadData();
+  },
   computed: {},
   methods: {
     isValidInputsMedicine() {
@@ -59,9 +64,16 @@ export default {
         return true;
       }
     },
+    onMedicineChanged(newValue) {
+      this.medicine = newValue;
+    },
 
     onClickToReturnListMedicines() {
       this.$router.push("/medicines");
+    },
+    async loadData() {
+      let medicineId = this.$route.params.id;
+      this.medicine = await getMedicineById(medicineId);
     },
     async onSaveClickedMedicine() {
       if (!this.isValidInputsMedicine()) {

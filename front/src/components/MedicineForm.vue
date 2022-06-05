@@ -2,11 +2,19 @@
   <dl class="form-add-medicine">
     <dd>
       <span>Nombre: </span>
-      <input type="text" v-model="this.medicineInForm.name_medicine" />
+      <input
+        type="text"
+        @keyup="onMedicineChanged"
+        v-model="this.medicineInForm.name_medicine"
+      />
     </dd>
     <dd>
       <span>Tipo: </span>
-      <select name="types" v-model="this.medicineInForm.type_medicine">
+      <select
+        name="types"
+        @keyup="onMedicineChanged"
+        v-model="this.medicineInForm.type_medicine"
+      >
         <option hidden value="Select">Elige un tipo</option>
         <option value="Pills">Pastillas</option>
         <option value="Cream">Crema</option>
@@ -18,6 +26,7 @@
       <textarea
         cols="28"
         rows="5"
+        @keyup="onMedicineChanged"
         v-model="this.medicineInForm.description"
       ></textarea>
     </dd>
@@ -45,16 +54,28 @@
     </dd>
     <dd>
       <span>Hora:</span>
-      <input type="time" v-model="this.medicineInForm.dosage.hour_dosage" />
+      <input
+        type="time"
+        @keyup="onMedicineChanged"
+        v-model="this.medicineInForm.dosage.hour_dosage"
+      />
       hrs.
     </dd>
     <dd>
       <span>Fecha Inicio:</span>
-      <input type="date" v-model="this.medicineInForm.start_date" />
+      <input
+        type="date"
+        @keyup="onMedicineChanged"
+        v-model="this.medicineInForm.start_date"
+      />
     </dd>
     <dd>
       <span>Fecha Fin:</span>
-      <input type="date" v-model="this.medicineInForm.end_date" />
+      <input
+        type="date"
+        @keyup="onMedicineChanged"
+        v-model="this.medicineInForm.end_date"
+      />
     </dd>
   </dl>
 </template>
@@ -93,6 +114,19 @@ export default {
         { name: "Dom", value: false },
       ],
     };
+  },
+  computed: {
+    filterDaysTrue() {
+      let listDays = this.nameOfDays;
+      const filterOfDaysTrue = listDays
+        .filter((i) => {
+          if (i.value === true) {
+            return i.name;
+          }
+        })
+        .map((i) => i.name);
+      return filterOfDaysTrue;
+    },
   },
   methods: {
     onClickNameDay(someday) {
