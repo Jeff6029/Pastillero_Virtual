@@ -22,7 +22,15 @@ def test_should_update_contact():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "08:00",
-            "days_dosage": ["Mar", "Vier"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         start_date="2022-03-01",
         end_date="2022-04-01",
@@ -39,7 +47,15 @@ def test_should_update_contact():
         "dosage": {
             "dosages_times": "2 veces por semana",
             "hour_dosage": "08:00",
-            "days_dosage": ["Mar", "Vier"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         "start_date": "2022-03-01",
         "end_date": "2022-04-01",
@@ -59,6 +75,14 @@ def test_should_update_contact():
     assert medicine["description"] == "Debes tomarlo por la noche"
     assert medicine["dosage"]["dosages_times"] == "2 veces por semana"
     assert medicine["dosage"]["hour_dosage"] == "08:00"
-    assert medicine["dosage"]["days_dosage"] == ["Mar", "Vier"]
     assert medicine["start_date"] == "2022-03-01"
     assert medicine["end_date"] == "2022-04-01"
+    assert medicine["dosage"]["days_dosage"] == [
+        {"name": "Lun", "value": False},
+        {"name": "Mar", "value": False},
+        {"name": "Miér", "value": False},
+        {"name": "Juev", "value": False},
+        {"name": "Vier", "value": False},
+        {"name": "Sáb", "value": False},
+        {"name": "Dom", "value": False},
+    ]

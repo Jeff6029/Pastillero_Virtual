@@ -17,7 +17,15 @@ def test_should_return_medicine_by_id():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "08:00",
-            "days_dosage": ["Mar", "Vier"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         start_date="2022-03-01",
         end_date="2022-04-01",
@@ -31,7 +39,15 @@ def test_should_return_medicine_by_id():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "09:00",
-            "days_dosage": ["Lun", "Juev"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         start_date="2022-04-01",
         end_date="2022-05-01",
@@ -51,9 +67,17 @@ def test_should_return_medicine_by_id():
     assert medicine_01["description"] == "Beber con agua fria"
     assert medicine_01["dosage"]["dosages_times"] == "2 veces por semana"
     assert medicine_01["dosage"]["hour_dosage"] == "08:00"
-    assert medicine_01["dosage"]["days_dosage"] == ["Mar", "Vier"]
     assert medicine_01["start_date"] == "2022-03-01"
     assert medicine_01["end_date"] == "2022-04-01"
+    assert medicine_01["dosage"]["days_dosage"] == [
+        {"name": "Lun", "value": False},
+        {"name": "Mar", "value": False},
+        {"name": "Miér", "value": False},
+        {"name": "Juev", "value": False},
+        {"name": "Vier", "value": False},
+        {"name": "Sáb", "value": False},
+        {"name": "Dom", "value": False},
+    ]
 
     assert response_medicine02.status_code == 200
     medicine_02 = response_medicine02.json
@@ -63,6 +87,14 @@ def test_should_return_medicine_by_id():
     assert medicine_02["description"] == "Aplicarlo suavemente"
     assert medicine_02["dosage"]["dosages_times"] == "2 veces por semana"
     assert medicine_02["dosage"]["hour_dosage"] == "09:00"
-    assert medicine_02["dosage"]["days_dosage"] == ["Lun", "Juev"]
     assert medicine_02["start_date"] == "2022-04-01"
     assert medicine_02["end_date"] == "2022-05-01"
+    assert medicine_02["dosage"]["days_dosage"] == [
+        {"name": "Lun", "value": False},
+        {"name": "Mar", "value": False},
+        {"name": "Miér", "value": False},
+        {"name": "Juev", "value": False},
+        {"name": "Vier", "value": False},
+        {"name": "Sáb", "value": False},
+        {"name": "Dom", "value": False},
+    ]

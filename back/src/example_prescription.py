@@ -16,7 +16,7 @@ medicine_02 = {
     "id_medicine": "0051",
     "name_medicine": "Bepanthol",
     "type_medicine": "Cream",
-    "description":"Aplicarlo suavemente",
+    "description": "Aplicarlo suavemente",
     "dosage": {
         "dosages_times": "3 veces por semana",
         "hour_dosage": "09:00",
@@ -30,7 +30,7 @@ medicine_03 = {
     "id_medicine": "0052",
     "name_medicine": "Ibuprofeno",
     "type_medicine": "Pills",
-    "description":"Tomarlo con agua fria",
+    "description": "Tomarlo con agua fria",
     "dosage": {
         "dosages_times": "3 veces por semana",
         "hour_dosage": "14:00",
@@ -44,7 +44,7 @@ medicine_04 = {
     "id_medicine": "0053",
     "name_medicine": "Aquoral Monodosis",
     "type_medicine": "eye_drops",
-    "description":"Aplicar 3 gotas",
+    "description": "Aplicar 3 gotas",
     "dosage": {
         "dosages_times": "2 veces por semana",
         "hour_dosage": "15:00",

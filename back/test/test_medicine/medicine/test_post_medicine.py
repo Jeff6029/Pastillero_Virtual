@@ -17,7 +17,15 @@ def test_should_return_post_new_medicines():
         "dosage": {
             "dosages_times": "2 veces por semana",
             "hour_dosage": "08:00",
-            "days_dosage": ["Mar", "Vier"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         "start_date": "2022-03-01",
         "end_date": "2022-04-01",
@@ -36,6 +44,14 @@ def test_should_return_post_new_medicines():
     assert save_medicine["description"] == "Beber con agua fria"
     assert save_medicine["dosage"]["dosages_times"] == "2 veces por semana"
     assert save_medicine["dosage"]["hour_dosage"] == "08:00"
-    assert save_medicine["dosage"]["days_dosage"] == ["Mar", "Vier"]
     assert save_medicine["start_date"] == "2022-03-01"
     assert save_medicine["end_date"] == "2022-04-01"
+    assert save_medicine["dosage"]["days_dosage"] == [
+        {"name": "Lun", "value": False},
+        {"name": "Mar", "value": False},
+        {"name": "Miér", "value": False},
+        {"name": "Juev", "value": False},
+        {"name": "Vier", "value": False},
+        {"name": "Sáb", "value": False},
+        {"name": "Dom", "value": False},
+    ]

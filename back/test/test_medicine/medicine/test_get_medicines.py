@@ -26,7 +26,15 @@ def test_should_return_all_complete_medicines():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "08:00",
-            "days_dosage": ["Mar", "Vier"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         start_date="2022-03-01",
         end_date="2022-04-01",
@@ -40,7 +48,15 @@ def test_should_return_all_complete_medicines():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "09:00",
-            "days_dosage": ["Lun", "Juev"],
+            "days_dosage": [
+                {"name": "Lun", "value": False},
+                {"name": "Mar", "value": False},
+                {"name": "Miér", "value": False},
+                {"name": "Juev", "value": False},
+                {"name": "Vier", "value": False},
+                {"name": "Sáb", "value": False},
+                {"name": "Dom", "value": False},
+            ],
         },
         start_date="2022-04-01",
         end_date="2022-05-01",
@@ -61,9 +77,17 @@ def test_should_return_all_complete_medicines():
     assert all_medicines[0]["description"] == "Beber con agua fria"
     assert all_medicines[0]["dosage"]["dosages_times"] == "2 veces por semana"
     assert all_medicines[0]["dosage"]["hour_dosage"] == "08:00"
-    assert all_medicines[0]["dosage"]["days_dosage"] == ["Mar", "Vier"]
     assert all_medicines[0]["start_date"] == "2022-03-01"
     assert all_medicines[0]["end_date"] == "2022-04-01"
+    assert all_medicines[0]["dosage"]["days_dosage"] == [
+        {"name": "Lun", "value": False},
+        {"name": "Mar", "value": False},
+        {"name": "Miér", "value": False},
+        {"name": "Juev", "value": False},
+        {"name": "Vier", "value": False},
+        {"name": "Sáb", "value": False},
+        {"name": "Dom", "value": False},
+    ]
 
     assert all_medicines[1]["id_medicine"] == "0051"
     assert all_medicines[1]["name_medicine"] == "Bepanthol"
@@ -71,6 +95,14 @@ def test_should_return_all_complete_medicines():
     assert all_medicines[1]["description"] == "Aplicarlo suavemente"
     assert all_medicines[1]["dosage"]["dosages_times"] == "2 veces por semana"
     assert all_medicines[1]["dosage"]["hour_dosage"] == "09:00"
-    assert all_medicines[1]["dosage"]["days_dosage"] == ["Lun", "Juev"]
     assert all_medicines[1]["start_date"] == "2022-04-01"
     assert all_medicines[1]["end_date"] == "2022-05-01"
+    assert all_medicines[1]["dosage"]["days_dosage"] == [
+        {"name": "Lun", "value": False},
+        {"name": "Mar", "value": False},
+        {"name": "Miér", "value": False},
+        {"name": "Juev", "value": False},
+        {"name": "Vier", "value": False},
+        {"name": "Sáb", "value": False},
+        {"name": "Dom", "value": False},
+    ]
