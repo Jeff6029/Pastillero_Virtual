@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import config from "@/config.js";
+import { getMedicine, deleteMedicine } from "@/services/api.js";
 export default {
   name: "MedicineDetail",
   data() {
@@ -55,9 +55,7 @@ export default {
   },
   methods: {
     async loadData() {
-      const endPoint = `${config.API_PATH}/medicines/${this.idOfMedicine}`;
-      const response = await fetch(endPoint);
-      let responseMedicine = await response.json();
+      let responseMedicine = await getMedicine(this.idOfMedicine);
 
       this.medicine = responseMedicine;
       this.dosage = responseMedicine.dosage;
@@ -65,11 +63,8 @@ export default {
       this.paintDaysSelected(daysReceived);
     },
     async onDeleteClickMedicine() {
-      const endPoint = `${config.API_PATH}/medicines/${this.idOfMedicine}`;
-      const settings = { method: "DELETE" };
       if (confirm("¿Deseas eliminar este evento?")) {
-        await fetch(endPoint, settings);
-        console.log("Se ha eliminado la medicina con id: ", this.idOfMedicine);
+        await deleteMedicine(this.idOfMedicine);
       } else {
         return "";
       }
