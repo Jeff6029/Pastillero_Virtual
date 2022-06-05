@@ -22,9 +22,9 @@
         <input type="checkbox" id="input-delete" />
         <label class="label-input-delete" for="input-delete">Eliminar</label>
       </router-link>
-      <router-link to="/medicines">
+      <router-link :to="`/medicines/${this.idOfMedicine}/update`">
         <input type="checkbox" id="input-back" />
-        <label class="label-input-back" for="input-back">Volver</label>
+        <label class="label-input-back" for="input-back">Editar</label>
       </router-link>
     </section>
   </fieldset>

@@ -26,6 +26,11 @@ const routes = [
     name: 'MedicinesSchedulePage',
     component: () => import('@/pages/medicines-schedule/MedicinesSchedulePage.vue'),
   },
+  {
+    path: '/medicines/:id/update',
+    name: 'MedicinesUpdatePage',
+    component: () => import('@/pages/medicine-update/MedicinesUpdatePage.vue'),
+  },
 ]
 
 const router = createRouter({
