@@ -25,7 +25,7 @@
       <span>Dosis:</span>
       <input
         class="input-number"
-        v-model="this.medicineInForm.dosage.dosages_times"
+        v-model="this.inputDosage"
         type="number"
         min="0"
         max="7"
@@ -34,7 +34,7 @@
     </dd>
     <dd class="name-days">
       <button
-        @click="onClickNameDay(day.name) && filterDaysTrue()"
+        @click="onClickNameDay(day.name)"
         v-for="day of nameOfDays"
         :key="day.id"
         class="names-days"
@@ -82,9 +82,30 @@ export default {
   data() {
     return {
       medicineInForm: this.medicine,
+      inputDosage: "",
+      nameOfDays: [
+        { name: "Lun", value: false },
+        { name: "Mar", value: false },
+        { name: "Miér", value: false },
+        { name: "Juev", value: false },
+        { name: "Vier", value: false },
+        { name: "Sáb", value: false },
+        { name: "Dom", value: false },
+      ],
     };
   },
   methods: {
+    onClickNameDay(someday) {
+      for (let day of this.nameOfDays) {
+        if (someday === day.name) {
+          if (day.value === false) {
+            return (day.value = true);
+          } else {
+            return (day.value = false);
+          }
+        }
+      }
+    },
     onMedicineChanged() {
       this.$emit("changed", this.medicineInForm);
     },
@@ -133,16 +154,4 @@ dl > dd {
   font-weight: bold;
   background-color: #42b983;
 }
-.btn-back-save {
-  cursor: pointer;
-  padding: 0.3em;
-  margin: 1em;
-  border-radius: 5px;
-}
-/* .label-input-back:hover{
-  background:#42b983;
-}
-.label-input-delete:hover{
-  background:#42b983;
-} */
 </style>
