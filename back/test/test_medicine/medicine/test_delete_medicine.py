@@ -61,15 +61,7 @@ def test_should_delete_one_medicine_and_return_only_one_medicine():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "08:00",
-            "days_dosage": [
-                {"name": "Lun", "value": False},
-                {"name": "Mar", "value": False},
-                {"name": "Miér", "value": False},
-                {"name": "Juev", "value": False},
-                {"name": "Vier", "value": False},
-                {"name": "Sáb", "value": False},
-                {"name": "Dom", "value": False},
-            ],
+            "days_dosage": ["Mar", "Vier"],
         },
         start_date="2022-03-01",
         end_date="2022-04-01",
@@ -82,15 +74,7 @@ def test_should_delete_one_medicine_and_return_only_one_medicine():
         dosage={
             "dosages_times": "2 veces por semana",
             "hour_dosage": "09:00",
-            "days_dosage": [
-                {"name": "Lun", "value": False},
-                {"name": "Mar", "value": False},
-                {"name": "Miér", "value": False},
-                {"name": "Juev", "value": False},
-                {"name": "Vier", "value": False},
-                {"name": "Sáb", "value": False},
-                {"name": "Dom", "value": False},
-            ],
+            "days_dosage": ["Lun", "Juev"],
         },
         start_date="2022-04-01",
         end_date="2022-05-01",
@@ -109,12 +93,4 @@ def test_should_delete_one_medicine_and_return_only_one_medicine():
     assert list_medicines[0]["id_medicine"] == "0051"
     assert list_medicines[0]["start_date"] == "2022-04-01"
     assert list_medicines[0]["end_date"] == "2022-05-01"
-    assert list_medicines[0]["dosage"]["days_dosage"] == [
-        {"name": "Lun", "value": False},
-        {"name": "Mar", "value": False},
-        {"name": "Miér", "value": False},
-        {"name": "Juev", "value": False},
-        {"name": "Vier", "value": False},
-        {"name": "Sáb", "value": False},
-        {"name": "Dom", "value": False},
-    ]
+    assert list_medicines[0]["dosage"]["days_dosage"] == ["Lun", "Juev"]
