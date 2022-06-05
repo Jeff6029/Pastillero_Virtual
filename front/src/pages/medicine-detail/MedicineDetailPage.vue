@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { getMedicine, deleteMedicine } from "@/services/api.js";
+import { getMedicineById, deleteMedicine } from "@/services/api.js";
 export default {
   name: "MedicineDetail",
   data() {
@@ -55,7 +55,7 @@ export default {
   },
   methods: {
     async loadData() {
-      let responseMedicine = await getMedicine(this.idOfMedicine);
+      let responseMedicine = await getMedicineById(this.idOfMedicine);
 
       this.medicine = responseMedicine;
       this.dosage = responseMedicine.dosage;

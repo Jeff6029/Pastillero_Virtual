@@ -15,7 +15,7 @@ export async function getMedicines() {
     return await response.json();
 }
 
-export async function getMedicine(id) {   
+export async function getMedicineById(id) {   
     const endPoint = `${config.API_PATH}/medicines/${id}`
     const settings = {method: "GET"};
 
