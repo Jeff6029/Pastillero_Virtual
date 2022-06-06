@@ -71,14 +71,13 @@
 
 
 <script>
-import { v4 as uuidv4 } from "uuid";
-import config from "@/config";
+import { saveMedicine } from "@/services/api.js";
 export default {
   name: "MedicinesAdd",
   data() {
     return {
       medicine: {
-        id_medicine: uuidv4(),
+        id_medicine: "",
         name_medicine: "",
         type_medicine: "",
         description: "",
@@ -153,18 +152,10 @@ export default {
         return;
       }
       const addMedicine = this.medicine;
-      addMedicine.id_medicine = uuidv4();
       addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
       addMedicine.dosage.days_dosage = this.filterDaysTrue;
 
-      const settings = {
-        method: "POST",
-        body: JSON.stringify(addMedicine),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await fetch(`${config.API_PATH}/medicines`, settings);
+      await saveMedicine(addMedicine);
       alert("Tu medicación se ha guardado correctamente");
       this.$router.push("/medicines");
     },

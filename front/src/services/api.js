@@ -1,5 +1,5 @@
 import config from "@/config";
-// import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 
 ///
 
@@ -21,6 +21,22 @@ export async function getMedicineById(id) {
 
     const response = await fetch(endPoint,settings);
     return await response.json();
+}
+
+export async function saveMedicine(medicine){
+    const addMedicine = medicine
+    addMedicine.id_medicine = uuidv4();
+
+    const endPoint = `${config.API_PATH}/medicines`; 
+    const settings = {
+        method: "POST",
+        body: JSON.stringify(addMedicine),
+        headers: {
+            "Content-Type": "application/json",
+        },
+      };
+    await fetch(endPoint, settings);
+    
 }
   
 export async function deleteMedicine(id) {
