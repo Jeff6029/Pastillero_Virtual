@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import config from "@/config.js";
+import { getListMedicinesByDate } from "@/services/api.js";
 export default {
   name: "MedicinesSchedule",
   data() {
@@ -50,12 +50,7 @@ export default {
       return namesMedicines;
     },
     async loadData() {
-      let date = new Date();
-      let today = date.toISOString().split("T")[0];
-      let endpoint = `${config.API_PATH}/medicines/by-date/${today}`;
-
-      const response = await fetch(endpoint);
-      const allResponse = await response.json();
+      const allResponse = await getListMedicinesByDate();
       this.listMedicines = allResponse;
     },
   },

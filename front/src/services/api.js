@@ -23,6 +23,17 @@ export async function getMedicineById(id) {
     return await response.json();
 }
 
+export async function getListMedicinesByDate(){
+    let date = new Date();
+    let today = date.toISOString().split("T")[0];
+    let endpoint = `${config.API_PATH}/medicines/by-date/${today}`;
+    const settings = {method: "GET"};
+
+    
+    const response = await fetch(endpoint, settings);
+    return await response.json();
+}
+
 export async function saveMedicine(medicine){
     const addMedicine = medicine
     addMedicine.id_medicine = uuidv4();
@@ -38,7 +49,9 @@ export async function saveMedicine(medicine){
     await fetch(endPoint, settings);
     
 }
-  
+
+
+
 export async function deleteMedicine(id) {
     const endPoint = `${config.API_PATH}/medicines/${id}`
     const settings = {method: "DELETE"};
@@ -46,3 +59,4 @@ export async function deleteMedicine(id) {
     const response = await fetch(endPoint, settings);
     return response;
 }
+
