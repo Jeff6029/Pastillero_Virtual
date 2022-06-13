@@ -1,11 +1,22 @@
 import config from "@/config";
 import { v4 as uuidv4 } from "uuid";
 
-///
+/// USERS
+
+// function getUserId() {
+//     const userJson = localStorage.getItem("auth");
+//     const user = JSON.parse(userJson);
+//     return user.id;
+//   }
+
+//   function getAccessToken() {
+//     const jwtJson = localStorage.getItem("auth");
+//     const jwt = JSON.parse(jwtJson);
+//     return jwt.access_token;
+//   }
 
 
-
-///
+/// HTTP
 
 export async function getMedicines() {   
     const endPoint = `${config.API_PATH}/medicines`
