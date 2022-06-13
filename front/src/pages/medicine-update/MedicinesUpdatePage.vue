@@ -9,7 +9,6 @@
       </button>
       <button class="btn-save" @click="onSaveClickedMedicine">Guardar</button>
     </section>
-    <MedicineForm :medicine="medicine" :inputDosage="inputDosage" />
   </fieldset>
   {{ medicine }}
 </template>
