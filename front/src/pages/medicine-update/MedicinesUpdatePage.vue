@@ -1,7 +1,11 @@
 <template>
   <fieldset class="medicines-box">
     <legend>Editar Medicina:</legend>
-    <MedicineForm :medicine="medicine" :inputDosage="inputDosage" />
+    <MedicineForm
+      :medicine="medicine"
+      :inputDosage="inputDosage"
+      @changed="onMedicineChanged"
+    />
 
     <section class="area-btns">
       <button class="btn-back" @click="onClickToReturnListMedicines">
