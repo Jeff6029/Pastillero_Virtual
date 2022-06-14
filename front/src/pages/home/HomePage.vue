@@ -22,7 +22,6 @@
       <button class="form-submit" @click="onButtonClicked">Login</button>
     </form>
   </div>
-  {{ $data }}
 </template>
 
 <script>
