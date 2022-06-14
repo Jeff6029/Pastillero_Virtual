@@ -20,10 +20,12 @@ def test_should_validate_login():
     client = setup()
 
     body = {"user": "user-j", "password": "user-j"}
-    response = client.post("/auth/login", json=body)
+    response_post = client.post("/auth/login", json=body)
+    assert response_post.status_code == 200
 
-    assert response.status_code == 200
-    assert response.json == {"id_user": "user-j", "name": "Jefferson"}
+    response = response_post.json
+    assert response["id_user"] == "user-j"
+    assert response["name"] == "Jefferson"
 
 
 def test_should_return_error_for_wrong_password():
