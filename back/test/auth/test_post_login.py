@@ -16,29 +16,29 @@ def setup():
     return client
 
 
-# def test_should_validate_login():
-#     client = setup()
+def test_should_validate_login():
+    client = setup()
 
-#     body = {"user": "user-jeff", "password": "user-j"}
-#     response = client.post("/auth/login", json=body)
+    body = {"user": "user-j", "password": "user-j"}
+    response = client.post("/auth/login", json=body)
 
-#     assert response.status_code == 200
-#     assert response.json == {"id_user": "user-jeff", "name": "Jefferson"}
-
-
-# def test_should_fail_if_invalid_password():
-#     client = setup()
-
-#     body = {"user": "user-tomas", "password": "el peor"}
-#     response = client.post("/auth/login", json=body)
-
-#     assert response.status_code == 401
+    assert response.status_code == 200
+    assert response.json == {"id_user": "user-j", "name": "Jefferson"}
 
 
-# def test_should_fail_if_user_not_exists():
-#     client = setup()
+def test_should_return_error_for_wrong_password():
+    client = setup()
 
-#     body = {"user": "user-not-exists", "password": "el mediano"}
-#     response = client.post("/auth/login", json=body)
+    body = {"user": "user-j", "password": "nanana"}
+    response = client.post("/auth/login", json=body)
 
-#     assert response.status_code == 401
+    assert response.status_code == 401
+
+
+def test_should_fail_if_user_not_exists():
+    client = setup()
+
+    body = {"user": "user-Laura", "password": "laura"}
+    response = client.post("/auth/login", json=body)
+
+    assert response.status_code == 401

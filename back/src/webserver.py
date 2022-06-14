@@ -2,8 +2,8 @@ from flask import Flask, request
 from flask_cors import CORS
 
 from src.lib.utils import object_to_json
-from src.domain.medicine import Medicine
-from src.domain.user import UserRepository
+from src.domain.medicine import Medicine, MedicineRepository
+from src.domain.user import User, UserRepository
 
 
 def create_app(repositories):
@@ -13,6 +13,16 @@ def create_app(repositories):
     @app.route("/", methods=["GET"])
     def hello_world():
         return "...magic!"
+
+    @app.route("/auth/login", methods=["POST"])
+    def login():
+        body = request.json
+        user = repositories["users"].get_by_id(body["user"])
+
+        if user is None or (body["password"]) != user.password:
+            return "", 401
+
+        return user.to_dict(), 200
 
     @app.route("/api/medicines", methods=["GET"])
     def medicines_get_all():
