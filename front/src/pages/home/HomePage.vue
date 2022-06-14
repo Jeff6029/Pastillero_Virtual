@@ -19,7 +19,7 @@
         placeholder="Introduce contraseña..."
         v-model="password"
       />
-      <input class="form-submit" type="submit" value="Login" />
+      <button class="form-submit" @click="onButtonClicked">Login</button>
     </form>
   </div>
   {{ $data }}
@@ -33,13 +33,12 @@ export default {
     return {
       user: "",
       password: "",
-      auth: "",
     };
   },
   methods: {
     async onButtonClicked() {
-      localStorage.userId = this.selectedUser.id;
-      localStorage.userName = this.selectedUser.name;
+      localStorage.userId = this.user;
+      localStorage.userName = this.password;
 
       const response = await login(this.user, this.password);
       const loginStatus = response.status;
@@ -52,19 +51,10 @@ export default {
         console.log("auth", auth);
 
         this.auth = auth;
-        this.$router.push("/contacts");
+        this.$router.push("/medicines");
       }
     },
   },
-  // mounted() {
-  //   this.loadData();
-  // },
-  // methods: {
-  //   async loadData() {
-  //     const response = await fetch('http://localhost:5000/api/info')
-  //     this.info = await response.json()
-  //   }
-  // }
 };
 </script>
 
