@@ -11,6 +11,7 @@ def test_should_return_post_new_medicines():
 
     body = {
         "id_medicine": "0050",
+        "id_user": "user-1",
         "name_medicine": "Paracetamol",
         "type_medicine": "pill",
         "description": "Beber con agua fria",

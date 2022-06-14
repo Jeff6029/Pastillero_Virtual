@@ -26,6 +26,7 @@ def test_should_delete_medicine_and_return_empty_list():
 
     medicine01 = Medicine(
         id_medicine="0050",
+        id_user="user-1",
         name_medicine="Paracetamol",
         type_medicine="pill",
         description="Beber con agua fria",
@@ -55,6 +56,7 @@ def test_should_delete_one_medicine_and_return_only_one_medicine():
 
     medicine01 = Medicine(
         id_medicine="0050",
+        id_user="user-1",
         name_medicine="Paracetamol",
         type_medicine="pill",
         description="Beber con agua fria",
@@ -68,6 +70,7 @@ def test_should_delete_one_medicine_and_return_only_one_medicine():
     )
     medicine02 = Medicine(
         id_medicine="0051",
+        id_user="user-1",
         name_medicine="Bepanthol",
         type_medicine="cream",
         description="Aplicarlo suavemente",

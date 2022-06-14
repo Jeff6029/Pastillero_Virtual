@@ -16,6 +16,7 @@ def test_should_update_contact():
     # save medicine
     medicine01 = Medicine(
         id_medicine="0050",
+        id_user="user-1",
         name_medicine="Paracetamol",
         type_medicine="pill",
         description="Beber con agua fria",
@@ -33,6 +34,7 @@ def test_should_update_contact():
     # send modified medicine
     body = {
         "id_medicine": "0050",
+        "id_user": "user-1",
         "name_medicine": "Paracetamol",
         "type_medicine": "pill",
         "description": "Debes tomarlo por la noche",

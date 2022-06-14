@@ -23,6 +23,7 @@ user_repository.save(User(id_user="user-2", name="Johan", password="user-2"))
 
 medicine_01 = Medicine(
     id_medicine="0050",
+    id_user="user-1",
     name_medicine="Paracetamol",
     type_medicine="Pills",
     description="Tomarlo con agua fria",
@@ -36,6 +37,7 @@ medicine_01 = Medicine(
 )
 medicine_02 = Medicine(
     id_medicine="0051",
+    id_user="user-1",
     name_medicine="Bepanthol",
     type_medicine="Cream",
     description="Aplicarlo suavemente",
@@ -49,6 +51,7 @@ medicine_02 = Medicine(
 )
 medicine_03 = Medicine(
     id_medicine="0052",
+    id_user="user-2",
     name_medicine="Ibuprofeno",
     type_medicine="Pills",
     description="Tomarlo con agua fria",
@@ -62,6 +65,7 @@ medicine_03 = Medicine(
 )
 medicine_04 = Medicine(
     id_medicine="0053",
+    id_user="user-2",
     name_medicine="Aquoral Monodosis",
     type_medicine="eye_drops",
     description="Aplicar 3 gotas",

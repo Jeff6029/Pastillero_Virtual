@@ -6,6 +6,7 @@ class Medicine:
     def __init__(
         self,
         id_medicine,
+        id_user,
         name_medicine,
         type_medicine,
         description,
@@ -14,6 +15,7 @@ class Medicine:
         end_date,
     ):
         self.id_medicine = id_medicine
+        self.id_user = id_user
         self.name_medicine = name_medicine
         self.type_medicine = type_medicine
         self.description = description
@@ -24,6 +26,7 @@ class Medicine:
     def to_dict(self):
         return {
             "id_medicine": self.id_medicine,
+            "id_user": self.id_user,
             "name_medicine": self.name_medicine,
             "type_medicine": self.type_medicine,
             "description": self.description,
@@ -47,12 +50,14 @@ class MedicineRepository:
         sql = """
             CREATE table if not exists medicines (
                 id_medicine varchar PRIMARY KEY,
+                id_user varchar,
                 name_medicine varchar,
                 type_medicine varchar,
                 description varchar,
                 dosage varchar,
                 start_date varchar,
-                end_date varchar
+                end_date varchar,
+                FOREIGN KEY (id_user) REFERENCES users(id_user)
             )"""
 
         conn = self.create_conn()
@@ -72,6 +77,7 @@ class MedicineRepository:
         for item in data:
             medicine = Medicine(
                 id_medicine=item["id_medicine"],
+                id_user=item["id_user"],
                 name_medicine=item["name_medicine"],
                 type_medicine=item["type_medicine"],
                 description=item["description"],
@@ -93,6 +99,7 @@ class MedicineRepository:
         # medicine = Medicine(**data)
         medicine = Medicine(
             id_medicine=data["id_medicine"],
+            id_user=data["id_user"],
             name_medicine=data["name_medicine"],
             type_medicine=data["type_medicine"],
             description=data["description"],
@@ -115,6 +122,7 @@ class MedicineRepository:
         for item in data:
             medicine = Medicine(
                 id_medicine=item["id_medicine"],
+                id_user=item["id_user"],
                 name_medicine=item["name_medicine"],
                 type_medicine=item["type_medicine"],
                 description=item["description"],
@@ -129,6 +137,7 @@ class MedicineRepository:
     def save(self, medicine):
         sql = """INSERT OR REPLACE INTO medicines (
             id_medicine,
+            id_user,
             name_medicine,
             type_medicine,
             description,
@@ -137,6 +146,7 @@ class MedicineRepository:
             end_date) 
         values(
             :id_medicine,
+            :id_user,
             :name_medicine,
             :type_medicine,
             :description,
@@ -150,6 +160,7 @@ class MedicineRepository:
             sql,
             {
                 "id_medicine": medicine.id_medicine,
+                "id_user": medicine.id_user,
                 "name_medicine": medicine.name_medicine,
                 "type_medicine": medicine.type_medicine,
                 "description": medicine.description,
