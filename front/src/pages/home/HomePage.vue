@@ -26,28 +26,26 @@
 
 <script>
 import { login } from "@/services/auth.js";
+import { useStorage } from "@vueuse/core";
+
 export default {
   name: "Home",
   data() {
     return {
       user: "",
       password: "",
+      auth: useStorage("auth", {}),
     };
   },
   methods: {
     async onButtonClicked() {
-      localStorage.userId = this.user;
-      localStorage.userName = this.password;
-
       const response = await login(this.user, this.password);
       const loginStatus = response.status;
-      console.log("response", response);
 
       if (loginStatus === 401) {
         alert("unauthorized");
       } else {
         const auth = await response.json();
-        console.log("auth", auth);
 
         this.auth = auth;
         this.$router.push("/medicines");

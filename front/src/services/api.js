@@ -3,24 +3,29 @@ import { v4 as uuidv4 } from "uuid";
 
 /// USERS
 
-// function getUserId() {
-//     const userJson = localStorage.getItem("auth");
-//     const user = JSON.parse(userJson);
-//     return user.id;
-//   }
+function getUserId() {
+    const userJson = localStorage.getItem("auth");
+    const user = JSON.parse(userJson);
+    return user.id;
+  }
 
-//   function getAccessToken() {
-//     const jwtJson = localStorage.getItem("auth");
-//     const jwt = JSON.parse(jwtJson);
-//     return jwt.access_token;
-//   }
+function getAccessToken() {
+    const jwtJson = localStorage.getItem("auth");
+    const jwt = JSON.parse(jwtJson);
+    return jwt.access_token;
+  }
 
 
 /// HTTP
 
 export async function getMedicines() {   
     const endPoint = `${config.API_PATH}/medicines`
-    const settings = {method: "GET"};
+    const settings = {
+        method: "GET",
+        headers: {
+            Authorization: "Bearer " + getAccessToken(),
+        }
+    };
     
     const response = await fetch(endPoint,settings);
     return await response.json();
@@ -28,7 +33,12 @@ export async function getMedicines() {
 
 export async function getMedicineById(id) {   
     const endPoint = `${config.API_PATH}/medicines/${id}`
-    const settings = {method: "GET"};
+    const settings = {
+        method: "GET",
+        headers: {
+            Authorization: getUserId()
+        }
+    };
 
     const response = await fetch(endPoint,settings);
     return await response.json();

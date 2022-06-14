@@ -1,5 +1,5 @@
 <template>
-  <h1>Mis Medicamentos</h1>
+  <h1>Mis Medicamentos: {{ getUserId }}</h1>
   <nav class="area-btns">
     <button @click="onClickMedicinesAdd">Añadir +</button>
     <button @click="onClickMedicinesSchedule">Horario</button>
@@ -34,6 +34,11 @@ export default {
     filteredMedicines() {
       const filterMedicine = this.allMedicines.filter((medicine) => medicine);
       return filterMedicine;
+    },
+    getUserId() {
+      const userJson = localStorage.getItem("auth");
+      const user = JSON.parse(userJson);
+      return user.name;
     },
   },
   methods: {

@@ -5,6 +5,8 @@
 ```
 npm install
 npm install uuid
+npm i @vueuse/core
+
 ```
 
 ### Ejecutar servidor de desarrollo
