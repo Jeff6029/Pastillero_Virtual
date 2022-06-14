@@ -4,6 +4,7 @@ sys.path.insert(0, "")
 
 from src.domain.info import Info, InfoRepository
 from src.domain.medicine import Medicine, MedicineRepository
+from src.domain.user import User, UserRepository
 
 database_path = "data/database.db"
 
@@ -11,7 +12,14 @@ info_repository = InfoRepository(database_path)
 
 info_repository.save(Info(app_name="pharminder-app"))
 
-###### medicines
+###### users:
+
+user_repository = UserRepository(database_path)
+user_repository.save(User(id_user="user-1", name="Jeff", password="user-1"))
+user_repository.save(User(id_user="user-2", name="Johan", password="user-2"))
+
+
+###### medicines:
 
 medicine_01 = Medicine(
     id_medicine="0050",

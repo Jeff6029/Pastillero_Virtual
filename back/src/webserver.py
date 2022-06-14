@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from src.lib.utils import object_to_json
 from src.domain.medicine import Medicine
+from src.domain.user import UserRepository
 
 
 def create_app(repositories):
@@ -46,5 +47,10 @@ def create_app(repositories):
     def medicines_get_by_date(date):
         validated_medicines = repositories["medicines"].get_by_date(date)
         return object_to_json(validated_medicines)
+
+    @app.route("/api/users", methods=["GET"])
+    def get_all_users():
+        all_users = repositories["users"].get_all()
+        return object_to_json(all_users)
 
     return app
