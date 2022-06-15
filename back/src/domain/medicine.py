@@ -89,6 +89,30 @@ class MedicineRepository:
             list_medicines.append(medicine)
         return list_medicines
 
+    def search_by_user_id(self, id_user):
+        print("webserver_id_user", id_user)
+        sql = """SELECT * FROM medicines WHERE id_user=:id_user"""
+        conn = self.create_conn()
+        cursor = conn.cursor()
+        cursor.execute(sql, {"id_user": id_user})
+
+        data = cursor.fetchall()
+
+        list_medicines = []
+        for item in data:
+            medicine = Medicine(
+                id_medicine=item["id_medicine"],
+                id_user=item["id_user"],
+                name_medicine=item["name_medicine"],
+                type_medicine=item["type_medicine"],
+                description=item["description"],
+                dosage=json.loads(item["dosage"]),
+                start_date=item["start_date"],
+                end_date=item["end_date"],
+            )
+            list_medicines.append(medicine)
+        return list_medicines
+
     def get_by_id(self, id):
         sql = """SELECT * FROM medicines WHERE id_medicine=:id"""
         conn = self.create_conn()
@@ -110,11 +134,11 @@ class MedicineRepository:
 
         return medicine
 
-    def get_by_date(self, date):
-        sql = """SELECT * FROM medicines WHERE start_date  <= :date AND :date <= end_date ORDER BY end_date DESC"""
+    def get_by_date(self, date, id):
+        sql = """SELECT * FROM medicines WHERE (start_date <= :date AND :date <= end_date) AND (id_user =:id_user) ORDER BY end_date DESC"""
         conn = self.create_conn()
         cursor = conn.cursor()
-        cursor.execute(sql, {"date": date})
+        cursor.execute(sql, {"date": date, "id_user": id})
 
         data = cursor.fetchall()
 
@@ -130,7 +154,6 @@ class MedicineRepository:
                 start_date=item["start_date"],
                 end_date=item["end_date"],
             )
-            # medicine = Medicine(**item)
             list_medicines.append(medicine)
         return list_medicines
 

@@ -42,8 +42,12 @@ def test_should_return_medicine_by_id():
     medicine_repository.save(medicine01)
     medicine_repository.save(medicine02)
 
-    response_medicine01 = client.get("/api/medicines/0050")
-    response_medicine02 = client.get("/api/medicines/0051")
+    response_medicine01 = client.get(
+        "/api/medicines/0050", headers={"Authorization": "user-1"}
+    )
+    response_medicine02 = client.get(
+        "/api/medicines/0051", headers={"Authorization": "user-1"}
+    )
 
     assert response_medicine01.status_code == 200
     medicine_01 = response_medicine01.json

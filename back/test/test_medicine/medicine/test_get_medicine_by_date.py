@@ -42,7 +42,9 @@ def test_should_return_empty_list_medicines():
     medicine_repository.save(medicine01)
     medicine_repository.save(medicine02)
 
-    response = client.get("/api/medicines/by-date/2022-05-15")
+    response = client.get(
+        "/api/medicines/by-date/2022-05-15", headers={"Authorization": "user-1"}
+    )
 
     assert response.status_code == 200
     assert response.json == []
@@ -86,7 +88,9 @@ def test_should_return_list_medicines():
     medicine_repository.save(medicine01)
     medicine_repository.save(medicine02)
 
-    response = client.get("/api/medicines/by-date/2022-04-15")
+    response = client.get(
+        "/api/medicines/by-date/2022-04-15", headers={"Authorization": "user-1"}
+    )
 
     assert response.status_code == 200
     list_medicines = response.json

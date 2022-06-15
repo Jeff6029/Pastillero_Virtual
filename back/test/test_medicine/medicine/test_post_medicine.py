@@ -24,9 +24,11 @@ def test_should_return_post_new_medicines():
         "end_date": "2022-04-01",
     }
 
-    client.post("/api/medicines", json=body)
+    client.post("/api/medicines", json=body, headers={"Authorization": "user-1"})
 
-    response_get = client.get("/api/medicines/0050")
+    response_get = client.get(
+        "/api/medicines/0050", headers={"Authorization": "user-1"}
+    )
 
     assert response_get.status_code == 200
     save_medicine = response_get.json

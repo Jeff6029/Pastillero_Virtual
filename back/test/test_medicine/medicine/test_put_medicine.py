@@ -47,12 +47,16 @@ def test_should_update_contact():
         "end_date": "2022-04-01",
     }
 
-    response = client.put("/api/medicines/0050", json=body)
+    response = client.put(
+        "/api/medicines/0050", json=body, headers={"Authorization": "user-1"}
+    )
 
     assert response.status_code == 200
 
     # get the modified medicine and verify this change
-    response_get = client.get("/api/medicines/0050")
+    response_get = client.get(
+        "/api/medicines/0050", headers={"Authorization": "user-1"}
+    )
     medicine = response_get.json
 
     assert medicine["id_medicine"] == "0050"

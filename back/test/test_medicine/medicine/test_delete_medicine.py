@@ -40,9 +40,11 @@ def test_should_delete_medicine_and_return_empty_list():
     )
 
     medicine_repository.save(medicine01)
-    response_delete01 = client.delete("/api/medicines/0050")
 
-    response = client.get("/api/medicines")
+    response_delete01 = client.delete(
+        "/api/medicines/0050", headers={"Authorization": "user-1"}
+    )
+    response = client.get("/api/medicines", headers={"Authorization": "user-1"})
 
     assert response_delete01.status_code == 200
     delete_01 = response.json
@@ -86,9 +88,11 @@ def test_should_delete_one_medicine_and_return_only_one_medicine():
     medicine_repository.save(medicine01)
     medicine_repository.save(medicine02)
 
-    response_delete01 = client.delete("/api/medicines/0050")
+    response_delete01 = client.delete(
+        "/api/medicines/0050", headers={"Authorization": "user-1"}
+    )
 
-    response = client.get("/api/medicines")
+    response = client.get("/api/medicines", headers={"Authorization": "user-1"})
 
     assert response_delete01.status_code == 200
     list_medicines = response.json

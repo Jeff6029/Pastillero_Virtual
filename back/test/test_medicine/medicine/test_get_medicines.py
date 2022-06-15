@@ -51,7 +51,7 @@ def test_should_return_all_complete_medicines():
     medicine_repository.save(medicine_01)
     medicine_repository.save(medicine_02)
 
-    response = client.get("/api/medicines")
+    response = client.get("/api/medicines", headers={"Authorization": "user-1"})
 
     assert response.status_code == 200
     all_medicines = response.json
