@@ -6,14 +6,14 @@ import { v4 as uuidv4 } from "uuid";
 function getUserId() {
     const userJson = localStorage.getItem("auth");
     const user = JSON.parse(userJson);
-    return user.id;
+    return user.id_user;
   }
 
-function getAccessToken() {
-    const jwtJson = localStorage.getItem("auth");
-    const jwt = JSON.parse(jwtJson);
-    return jwt.access_token;
-  }
+// function getAccessToken() {
+//     const jwtJson = localStorage.getItem("auth");
+//     const jwt = JSON.parse(jwtJson);
+//     return jwt.access_token;
+//   }
 
 
 /// HTTP
@@ -23,7 +23,7 @@ export async function getMedicines() {
     const settings = {
         method: "GET",
         headers: {
-            Authorization: "Bearer " + getAccessToken(),
+            Authorization: getUserId(),
         }
     };
     
@@ -47,8 +47,12 @@ export async function getMedicineById(id) {
 export async function getListMedicinesByDate(){
     let date = new Date();
     let today = date.toISOString().split("T")[0];
+
+    const settings = {
+        method: "GET",
+        Authorization: getUserId(),
+    };
     let endpoint = `${config.API_PATH}/medicines/by-date/${today}`;
-    const settings = {method: "GET"};
 
     
     const response = await fetch(endpoint, settings);
@@ -65,8 +69,10 @@ export async function saveMedicine(medicine){
         body: JSON.stringify(addMedicine),
         headers: {
             "Content-Type": "application/json",
+            Authorization: getUserId(),
         },
       };
+
     await fetch(endPoint, settings);
     
 }
@@ -75,7 +81,9 @@ export async function saveMedicine(medicine){
 
 export async function deleteMedicine(id) {
     const endPoint = `${config.API_PATH}/medicines/${id}`
-    const settings = {method: "DELETE"};
+    const settings = {
+        method: "DELETE",
+        Authorization: getUserId()};
 
     const response = await fetch(endPoint, settings);
     return response;

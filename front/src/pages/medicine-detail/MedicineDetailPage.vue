@@ -20,11 +20,20 @@
     <section class="area-btns">
       <router-link to="/medicines" @click="onDeleteClickMedicine">
         <input type="checkbox" id="input-delete" />
-        <label class="label-input-delete" for="input-delete">Eliminar</label>
+        <label class="label-input-delete" for="input-delete"
+          ><i class="fa-solid fa-trash-can"></i
+        ></label>
       </router-link>
+
+      <button class="btn-back-save" @click="onClickToReturnListMedicines">
+        <i class="fa-solid fa-arrow-rotate-left"></i>
+      </button>
+
       <router-link :to="`/medicines/${this.idOfMedicine}/update`">
         <input type="checkbox" id="input-back" />
-        <label class="label-input-back" for="input-back">Editar</label>
+        <label class="label-input-back" for="input-back"
+          ><i class="fa-solid fa-pen"></i
+        ></label>
       </router-link>
     </section>
   </fieldset>
@@ -70,6 +79,9 @@ export default {
         return "";
       }
       location.reload(true);
+    },
+    onClickToReturnListMedicines() {
+      this.$router.push("/medicines");
     },
 
     paintDaysSelected(array) {
@@ -136,7 +148,7 @@ button {
   width: fit-content;
   height: fit-content;
   border: 1px solid;
-  padding: 0.3em;
+  padding: 5px;
   margin: 1em;
   background: #e5e9e8;
   border-radius: 5px;

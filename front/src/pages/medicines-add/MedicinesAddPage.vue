@@ -60,10 +60,10 @@
     </dl>
     <section class="area-btns">
       <button class="btn-back-save" @click="onClickToReturnListMedicines">
-        Volver
+        <i class="fa-solid fa-arrow-rotate-left"></i>
       </button>
       <button class="btn-back-save" @click="onSaveClickedMedicine">
-        Guardar
+        <i class="fa-solid fa-plus"></i>
       </button>
     </section>
   </fieldset>

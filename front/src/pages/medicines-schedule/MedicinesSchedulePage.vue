@@ -52,6 +52,7 @@ export default {
     async loadData() {
       const allResponse = await getListMedicinesByDate();
       this.listMedicines = allResponse;
+      console.log(allResponse);
     },
   },
 };

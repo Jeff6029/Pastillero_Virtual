@@ -1,8 +1,12 @@
 <template>
   <h1>Mis Medicamentos: {{ getUserId }}</h1>
   <nav class="area-btns">
-    <button @click="onClickMedicinesAdd">Añadir +</button>
-    <button @click="onClickMedicinesSchedule">Horario</button>
+    <button @click="onClickMedicinesAdd">
+      <i class="fa-solid fa-plus"></i>
+    </button>
+    <button @click="onClickMedicinesSchedule">
+      <i class="fa-solid fa-calendar-days"></i>
+    </button>
   </nav>
   <section class="medicines-list">
     <Medicine
@@ -50,6 +54,7 @@ export default {
       let today = date.toISOString().split("T")[0];
       this.$router.push(`/medicines-schedule/${today}`);
     },
+
     async loadData() {
       const response = await getMedicines();
       this.allMedicines = response;

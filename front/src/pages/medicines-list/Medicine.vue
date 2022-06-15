@@ -3,7 +3,9 @@
     <header>
       <h3>{{ medicine.name_medicine }}</h3>
       <router-link :to="`/medicines/${medicine.id_medicine}`">
-        <button class="btn-info">+ Info</button>
+        <button class="btn-info">
+          <i class="fa-solid fa-circle-info"></i>
+        </button>
       </router-link>
     </header>
     <ul>
@@ -46,7 +48,7 @@ export default {
 }
 .btn-info {
   cursor: pointer;
-  padding: 2px;
+  padding: 4px;
 }
 
 .medicine-box > ul > li {
