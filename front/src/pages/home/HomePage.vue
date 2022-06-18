@@ -73,7 +73,7 @@ h1 {
   width: 20%;
   min-width: 350px;
   max-width: 100%;
-  background: rgba(70, 134, 183, 0.648);
+  background: rgba(70, 134, 183, 0.457);
   border-radius: 5px;
   padding: 40px;
   box-shadow: 0 4px 10px 4px rgba(0, 0, 0, 0.3);

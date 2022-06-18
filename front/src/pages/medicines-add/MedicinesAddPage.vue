@@ -151,7 +151,7 @@ export default {
         alert("Rellena correctamente los campos");
         return;
       }
-      const addMedicine = this.medicine;
+      let addMedicine = this.medicine;
       addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
       addMedicine.dosage.days_dosage = this.filterDaysTrue;
 

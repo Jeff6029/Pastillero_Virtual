@@ -18,3 +18,9 @@
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+body{
+  
+  background-image: url("https://img.freepik.com/vector-gratis/antecedentes-medicos-limpios_53876-97927.jpg?t=st=1655586122~exp=1655586722~hmac=98e034216b72d89cc156fea93efdb83e798068000ff2cc6e2fe7d5fa71c6b7e2&w=1800");
+  
+  background-repeat: repeat-y
+}
