@@ -1,6 +1,6 @@
 <template>
   <fieldset class="medicines-box">
-    <legend>+ Información:</legend>
+    <legend class="title_fielset"><h1>+ Información:</h1></legend>
     <h2 class="medicine-name">{{ medicine.name_medicine }}</h2>
     <ul>
       <li><span>Tipo:</span> {{ medicine.type_medicine }}</li>
@@ -18,23 +18,17 @@
       <li><span>Fecha Fin:</span> {{ medicine.end_date }}</li>
     </ul>
     <section class="area-btns">
-      <router-link to="/medicines" @click="onDeleteClickMedicine">
-        <input type="checkbox" id="input-delete" />
-        <label class="label-input-delete" for="input-delete"
-          ><i class="fa-solid fa-trash-can"></i
-        ></label>
-      </router-link>
+      <button class="btn-delete" @click="onDeleteClickMedicine">
+        <i class="fa-solid fa-trash-can"></i>
+      </button>
 
-      <button class="btn-back-save" @click="onClickToReturnListMedicines">
+      <button class="btn-back" @click="onClickToReturnListMedicines">
         <i class="fa-solid fa-arrow-rotate-left"></i>
       </button>
 
-      <router-link :to="`/medicines/${this.idOfMedicine}/update`">
-        <input type="checkbox" id="input-back" />
-        <label class="label-input-back" for="input-back"
-          ><i class="fa-solid fa-pen"></i
-        ></label>
-      </router-link>
+      <button class="btn-update" @click="onClickToUpdateMedicine">
+        <i class="fa-solid fa-pen"></i>
+      </button>
     </section>
   </fieldset>
 </template>
@@ -73,15 +67,17 @@ export default {
     },
     async onDeleteClickMedicine() {
       if (confirm("¿Deseas eliminar este evento?")) {
+        this.onClickToReturnListMedicines();
         await deleteMedicine(this.idOfMedicine);
-        this.$router.push("/medicines");
       } else {
         return "";
       }
-      location.reload(true);
     },
     onClickToReturnListMedicines() {
       this.$router.push("/medicines");
+    },
+    onClickToUpdateMedicine() {
+      this.$router.push(`/medicines/${this.idOfMedicine}/update`);
     },
 
     paintDaysSelected(array) {
@@ -103,6 +99,9 @@ export default {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+}
+.title_fielset {
+  text-align: left;
 }
 .medicines-box {
   margin: 10vh auto;
@@ -127,7 +126,7 @@ ul > li {
   margin: 0 3em;
   margin-bottom: 0.3em;
 }
-button {
+ul > button {
   color: #9ea1a0ea;
   background-color: transparent;
   border: none;
@@ -142,25 +141,28 @@ button {
   background-color: #42b983;
 }
 
-.label-input-back,
-.label-input-delete {
+.btn-update,
+.btn-delete,
+.btn-back {
   cursor: pointer;
-  width: fit-content;
-  height: fit-content;
-  border: 1px solid;
-  padding: 5px;
+  padding: 8px;
   margin: 1em;
   background: #e5e9e8;
+  color: black;
   border-radius: 5px;
+  border: none;
 }
-/* .label-input-back:hover{
-  background:#42b983;
+.btn-update:hover,
+.btn-back:hover {
+  background: #6dc39c;
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s all ease-out;
 }
-.label-input-delete:hover{
-  background:#42b983;
-} */
-#input-back,
-#input-delete {
-  display: none;
+.btn-delete:hover {
+  background: #df4f4fea;
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s all ease-out;
 }
 </style>
