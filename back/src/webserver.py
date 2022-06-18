@@ -17,7 +17,7 @@ def create_app(repositories):
     @app.route("/auth/login", methods=["POST"])
     def login():
         body = request.json
-        user = repositories["users"].get_by_id(body["user"])
+        user = repositories["users"].get_by_id(body["id_user"])
 
         if user is None or (body["password"]) != user.password:
             return "", 401

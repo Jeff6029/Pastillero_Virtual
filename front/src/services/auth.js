@@ -9,7 +9,7 @@ export async function login(user, password) {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            user: user,
+            id_user: user,
             password: password,
         }),
 
