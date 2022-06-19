@@ -34,7 +34,7 @@
       <span>Dosis:</span>
       <input
         class="input-number"
-        v-model="this.inputDosage"
+        v-model="this.medicineInForm.dosage.dosages_times"
         type="number"
         min="0"
         max="7"
@@ -78,6 +78,8 @@
       />
     </dd>
   </dl>
+  <p>Hijo:</p>
+  {{ medicineInForm }}
 </template>
 
 
@@ -103,7 +105,6 @@ export default {
   data() {
     return {
       medicineInForm: this.medicine,
-      inputDosage: "",
       nameOfDays: [
         { name: "Lun", value: false },
         { name: "Mar", value: false },
