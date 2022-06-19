@@ -67,10 +67,7 @@ export default {
 body {
   width: 100vw;
 }
-.medicines-list {
-  display: grid;
-  place-items: center;
-}
+
 .area-btns {
   width: 350px;
   padding: 0 2.8em;
@@ -94,5 +91,15 @@ body {
   background: #6dc39c;
   color: white;
   transition: 0.2s all ease-out;
+}
+
+.medicines-list {
+  display: grid;
+  place-items: center;
+}
+
+.medicines-list > .medicine-box:hover {
+  outline: 0;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.11);
 }
 </style>

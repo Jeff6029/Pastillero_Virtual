@@ -44,6 +44,7 @@ header > h3 {
   display: flex;
   justify-content: space-between;
 }
+
 .btn-info {
   cursor: pointer;
   padding: 5px;
