@@ -51,7 +51,7 @@ header > h3 {
   border: none;
 }
 .btn-info:hover {
-  background: #fa79018e;
+  background: #6fa3dfbd;
   color: white;
   transition: 0.2s all ease-out;
   align-self: center;

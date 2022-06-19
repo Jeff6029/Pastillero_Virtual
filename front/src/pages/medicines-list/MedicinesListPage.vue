@@ -95,12 +95,36 @@ body {
 }
 
 .medicines-list {
+  width: 100vw;
   display: grid;
   place-items: center;
 }
+.medicine-box {
+  margin: 0.7em;
+}
 
 .medicines-list > .medicine-box:hover {
-  outline: 0;
   box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.11);
+}
+
+@media screen and (min-width: 800px) {
+  .medicines-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (min-width: 1100px) {
+  .medicines-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media screen and (min-width: 1350px) {
+  .medicines-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media screen and (min-width: 1900px) {
+  .medicines-list {
+    grid-template-columns: repeat(5, 1fr);
+  }
 }
 </style>
