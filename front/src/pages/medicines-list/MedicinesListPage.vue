@@ -1,5 +1,6 @@
 <template>
-  <h1>Mis Medicamentos: {{ getUserId }}</h1>
+  <h1>Mis Medicamentos:</h1>
+  <h1>{{ getUserId }}</h1>
   <nav class="area-btns">
     <button class="btn-medicine-add" @click="onClickMedicinesAdd">
       <i class="fa-solid fa-plus"></i>
