@@ -86,7 +86,7 @@ body {
   background: #e5e9e8e0;
   color: black;
   border-radius: 5px;
-  border: none;
+  border: 1px solid #42b983;
 }
 
 .btn-medicine-add:hover,
