@@ -1,6 +1,6 @@
 <template>
   <fieldset class="medicines-box">
-    <legend>Añadir Medicina:</legend>
+    <legend><h1>Añadir Medicina:</h1></legend>
     <dl class="form-add-medicine">
       <dd>
         <span>Nombre: </span>
@@ -59,10 +59,10 @@
       </dd>
     </dl>
     <section class="area-btns">
-      <button class="btn-back-save" @click="onClickToReturnListMedicines">
+      <button class="btn-back" @click="onClickToReturnListMedicines">
         <i class="fa-solid fa-arrow-rotate-left"></i>
       </button>
-      <button class="btn-back-save" @click="onSaveClickedMedicine">
+      <button class="btn-save" @click="onSaveClickedMedicine">
         <i class="fa-solid fa-plus"></i>
       </button>
     </section>
@@ -164,11 +164,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .medicines-box {
   margin: 5vh auto;
   width: 50vw;
@@ -204,16 +199,27 @@ dl > dd {
   font-weight: bold;
   background-color: #42b983;
 }
-.btn-back-save {
+
+.btn-save,
+.btn-back {
   cursor: pointer;
-  padding: 0.3em;
+  padding: 8px;
   margin: 1em;
+  background: #e5e9e8;
+  color: black;
   border-radius: 5px;
+  border: none;
 }
-/* .label-input-back:hover{
-  background:#42b983;
+.btn-save:hover {
+  background: #6dc39c;
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s all ease-out;
 }
-.label-input-delete:hover{
-  background:#42b983;
-} */
+.btn-back:hover {
+  background: #fa79018e;
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s all ease-out;
+}
 </style>

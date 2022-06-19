@@ -9,9 +9,11 @@
 
     <section class="area-btns">
       <button class="btn-back" @click="onClickToReturnListMedicines">
-        Volver
+        <i class="fa-solid fa-arrow-rotate-left"></i>
       </button>
-      <button class="btn-save" @click="onSaveClickedMedicine">Guardar</button>
+      <button class="btn-save" @click="onSaveClickedMedicine">
+        <i class="fa-solid fa-bookmark"></i>
+      </button>
     </section>
   </fieldset>
   {{ medicine }}
@@ -102,11 +104,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .medicines-box {
   margin: 5vh auto;
   width: 50vw;
@@ -119,10 +116,13 @@ export default {
 }
 .btn-back,
 .btn-save {
+  padding: 0.5em;
   cursor: pointer;
-  padding: 0.3em;
   margin: 1em;
+  background: #e5e9e8e0;
+  color: black;
   border-radius: 5px;
+  border: none;
 }
 .btn-save:hover {
   color: white;
@@ -130,6 +130,6 @@ export default {
 }
 .btn-back:hover {
   color: white;
-  background: #b72f2fef;
+  background: #fa79018e;
 }
 </style>

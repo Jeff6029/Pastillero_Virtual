@@ -1,10 +1,10 @@
 <template>
   <h1>Mis Medicamentos: {{ getUserId }}</h1>
   <nav class="area-btns">
-    <button @click="onClickMedicinesAdd">
+    <button class="btn-medicine-add" @click="onClickMedicinesAdd">
       <i class="fa-solid fa-plus"></i>
     </button>
-    <button @click="onClickMedicinesSchedule">
+    <button class="btn-medicine-schedule" @click="onClickMedicinesSchedule">
       <i class="fa-solid fa-calendar-days"></i>
     </button>
   </nav>
@@ -64,11 +64,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 body {
   width: 100vw;
 }
@@ -87,5 +82,17 @@ body {
 .area-btns > button {
   padding: 0.5em;
   cursor: pointer;
+  margin: 1em;
+  background: #e5e9e8e0;
+  color: black;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-medicine-add:hover,
+.btn-medicine-schedule:hover {
+  background: #6dc39c;
+  color: white;
+  transition: 0.2s all ease-out;
 }
 </style>

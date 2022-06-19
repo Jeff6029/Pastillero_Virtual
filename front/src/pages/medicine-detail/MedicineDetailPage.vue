@@ -95,11 +95,6 @@ export default {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
 .title_fielset {
   text-align: left;
 }
@@ -152,7 +147,12 @@ ul > button {
   border-radius: 5px;
   border: none;
 }
-.btn-update:hover,
+.btn-update:hover {
+  background: #fa79018e;
+  color: white;
+  border: 1px solid white;
+  transition: 0.2s all ease-out;
+}
 .btn-back:hover {
   background: #6dc39c;
   color: white;

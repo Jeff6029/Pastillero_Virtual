@@ -28,10 +28,8 @@ export default {
 </script>
 
 <style scoped>
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
+header > h3 {
+  color: #6fa3df;
 }
 .medicine-box {
   width: 300px;
@@ -48,7 +46,15 @@ export default {
 }
 .btn-info {
   cursor: pointer;
-  padding: 4px;
+  padding: 5px;
+  border: none;
+}
+.btn-info:hover {
+  background: #fa79018e;
+  color: white;
+  transition: 0.2s all ease-out;
+  align-self: center;
+  padding-right: 1em;
 }
 
 .medicine-box > ul > li {
