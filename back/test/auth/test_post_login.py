@@ -19,7 +19,7 @@ def setup():
 def test_should_validate_login():
     client = setup()
 
-    body = {"user": "user-j", "password": "user-j"}
+    body = {"id_user": "user-j", "password": "user-j"}
     response_post = client.post("/auth/login", json=body)
     assert response_post.status_code == 200
 
@@ -31,7 +31,7 @@ def test_should_validate_login():
 def test_should_return_error_for_wrong_password():
     client = setup()
 
-    body = {"user": "user-j", "password": "nanana"}
+    body = {"id_user": "user-j", "password": "nanana"}
     response = client.post("/auth/login", json=body)
 
     assert response.status_code == 401
@@ -40,7 +40,7 @@ def test_should_return_error_for_wrong_password():
 def test_should_fail_if_user_not_exists():
     client = setup()
 
-    body = {"user": "user-Laura", "password": "laura"}
+    body = {"id_user": "user-Laura", "password": "laura"}
     response = client.post("/auth/login", json=body)
 
     assert response.status_code == 401

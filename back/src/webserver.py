@@ -30,14 +30,24 @@ def create_app(repositories):
         all_medicines = repositories["medicines"].search_by_user_id(id_user)
         return object_to_json(all_medicines)
 
+    @app.route("/api/medicines/<id>", methods=["GET"])
+    def medicines_get_by_id(id):
+        id_user = request.headers.get("Authorization")
+        medicine = repositories["medicines"].get_by_id(id)
+
+        if id_user == medicine.id_user:
+            return object_to_json(medicine), 200
+        else:
+            return "", 403
+
     @app.route("/api/medicines", methods=["POST"])
     def medicines_post():
-        user_id = request.headers.get("Authorization")
+        id_user = request.headers.get("Authorization")
 
         body = request.json
         medicine = Medicine(
             id_medicine=body["id_medicine"],
-            id_user=user_id,
+            id_user=id_user,
             name_medicine=body["name_medicine"],
             type_medicine=body["type_medicine"],
             description=body["description"],
@@ -52,21 +62,11 @@ def create_app(repositories):
         repositories["medicines"].save(medicine)
         return "", 200
 
-    @app.route("/api/medicines/<id>", methods=["GET"])
-    def medicines_get_by_id(id):
-        id_user = request.headers.get("Authorization")
-        medicine = repositories["medicines"].get_by_id(id)
-
-        if id_user == medicine.id_user:
-            return object_to_json(medicine), 200
-        else:
-            return "", 403
-
     @app.route("/api/medicines/<id>", methods=["PUT"])
     def medicines_put(id):
         user_id = request.headers.get("Authorization")
-        body = request.json
 
+        body = request.json
         medicine = Medicine(
             id_medicine=body["id_medicine"],
             id_user=user_id,
