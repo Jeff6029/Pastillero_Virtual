@@ -34,6 +34,7 @@
       <span>Dosis:</span>
       <input
         class="input-number"
+        @keyup="onMedicineChanged"
         v-model="this.medicineInForm.dosage.dosages_times"
         type="number"
         min="0"
@@ -43,8 +44,8 @@
     </dd>
     <dd class="name-days">
       <button
-        @click="onClickNameDay(day.name)"
-        v-for="day of nameOfDays"
+        @click="onClickNameDay(day.name) && onNameOfDaysChanged"
+        v-for="day of nameOfDaysInForm"
         :key="day.id"
         class="names-days"
         :class="{ 'name-of-day': day.value }"
@@ -78,8 +79,6 @@
       />
     </dd>
   </dl>
-  <p>Hijo:</p>
-  {{ medicineInForm }}
 </template>
 
 
@@ -91,10 +90,21 @@ export default {
       type: Object,
       required: true,
     },
+    nameOfDays: {
+      type: Object,
+      required: true,
+    },
   },
-  emits: ["changed"],
+  emits: ["changedMedicine", "changedDays"],
   watch: {
     medicine: {
+      handler(newValue) {
+        const medicineAsJson = JSON.stringify(newValue);
+        this.medicineInForm = JSON.parse(medicineAsJson);
+      },
+      inmediate: true,
+    },
+    nameOfDays: {
       handler(newValue) {
         const medicineAsJson = JSON.stringify(newValue);
         this.medicineInForm = JSON.parse(medicineAsJson);
@@ -105,33 +115,13 @@ export default {
   data() {
     return {
       medicineInForm: this.medicine,
-      nameOfDays: [
-        { name: "Lun", value: false },
-        { name: "Mar", value: false },
-        { name: "Miér", value: false },
-        { name: "Juev", value: false },
-        { name: "Vier", value: false },
-        { name: "Sáb", value: false },
-        { name: "Dom", value: false },
-      ],
+      nameOfDaysInForm: this.nameOfDays,
     };
   },
-  computed: {
-    filterDaysTrue() {
-      let listDays = this.nameOfDays;
-      const filterOfDaysTrue = listDays
-        .filter((i) => {
-          if (i.value === true) {
-            return i.name;
-          }
-        })
-        .map((i) => i.name);
-      return filterOfDaysTrue;
-    },
-  },
+  computed: {},
   methods: {
     onClickNameDay(someday) {
-      for (let day of this.nameOfDays) {
+      for (let day of this.nameOfDaysInForm) {
         if (someday === day.name) {
           if (day.value === false) {
             return (day.value = true);
@@ -142,7 +132,10 @@ export default {
       }
     },
     onMedicineChanged() {
-      this.$emit("changed", this.medicineInForm);
+      this.$emit("changedMedicine", this.medicineInForm);
+    },
+    onNameOfDaysChanged() {
+      this.$emit("changedDays", this.nameOfDaysInForm);
     },
   },
 };

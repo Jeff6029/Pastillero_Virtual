@@ -48,15 +48,26 @@ export async function getListMedicinesByDate(){
     let date = new Date();
     let today = date.toISOString().split("T")[0];
 
+    let endpoint = `${config.API_PATH}/medicines/by-date/${today}`;
     const settings = {
         method: "GET",
-        Authorization: getUserId(),
+        headers: {
+            Authorization: getUserId(),
+        }
     };
-    let endpoint = `${config.API_PATH}/medicines/by-date/${today}`;
-
     
     const response = await fetch(endpoint, settings);
     return await response.json();
+}
+
+export async function deleteMedicine(id) {
+    const endPoint = `${config.API_PATH}/medicines/${id}`
+    const settings = {
+        method: "DELETE",
+        Authorization: getUserId()};
+
+    const response = await fetch(endPoint, settings);
+    return response;
 }
 
 export async function saveMedicine(medicine){
@@ -77,15 +88,15 @@ export async function saveMedicine(medicine){
     
 }
 
-
-
-export async function deleteMedicine(id) {
-    const endPoint = `${config.API_PATH}/medicines/${id}`
+export async function updateMedicine(medicine){
+    const endPoint = `${config.API_PATH}/medicines/${medicine.id_medicine}`
     const settings = {
-        method: "DELETE",
-        Authorization: getUserId()};
-
-    const response = await fetch(endPoint, settings);
-    return response;
+        method: "PUT",
+        body: JSON.stringify(medicine),
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: getUserId(),
+        },
+      };
+      await fetch(endPoint, settings);
 }
-

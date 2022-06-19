@@ -27,7 +27,7 @@
         <span>Dosis:</span>
         <input
           class="input-number"
-          v-model="this.inputDosage"
+          v-model="this.medicine.dosage.dosages_times"
           type="number"
           min="0"
           max="7"
@@ -120,7 +120,7 @@ export default {
         this.medicine.name_medicine === "" ||
         this.medicine.type_medicine === "" ||
         this.medicine.description === "" ||
-        this.inputDosage === "" ||
+        this.medicine.dosage.dosages_times === "" ||
         this.medicine.dosage.hour_dosage === "" ||
         this.medicine.dosage.days_dosage === "" ||
         this.medicine.start_date === "" ||
@@ -152,7 +152,6 @@ export default {
         return;
       }
       let addMedicine = this.medicine;
-      addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
       addMedicine.dosage.days_dosage = this.filterDaysTrue;
 
       await saveMedicine(addMedicine);

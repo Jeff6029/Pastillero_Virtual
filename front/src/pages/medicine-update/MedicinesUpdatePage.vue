@@ -1,28 +1,27 @@
 <template>
   <fieldset class="medicines-box">
-    <legend>Editar Medicina:</legend>
+    <legend><h1>* Editar Medicina:</h1></legend>
     <MedicineForm
       :medicine="medicine"
-      :inputDosage="inputDosage"
-      @changed="onMedicineChanged"
+      :nameOfDays="nameOfDays"
+      @changedMedicine="medicineChanged"
+      @changedDays="nameOfDaysChanged"
     />
 
     <section class="area-btns">
       <button class="btn-back" @click="onClickToReturnListMedicines">
         <i class="fa-solid fa-arrow-rotate-left"></i>
       </button>
-      <button class="btn-save" @click="onSaveClickedMedicine">
+      <button class="btn-save" @click.prevent="onSaveClickedMedicine">
         <i class="fa-solid fa-bookmark"></i>
       </button>
     </section>
   </fieldset>
-  {{ medicine }}
 </template>
 
 
 <script>
-import config from "@/config";
-import { getMedicineById } from "@/services/api.js";
+import { getMedicineById, updateMedicine } from "@/services/api.js";
 import MedicineForm from "@/components/MedicineForm.vue";
 
 export default {
@@ -32,6 +31,7 @@ export default {
   },
   data() {
     return {
+      idOfMedicine: this.$route.params.id,
       medicine: {
         name_medicine: "",
         type_medicine: "",
@@ -44,21 +44,62 @@ export default {
         start_date: "",
         end_date: "",
       },
-      inputDosage: "",
-      listDays: [],
+      nameOfDays: [
+        { name: "Lun", value: false },
+        { name: "Mar", value: false },
+        { name: "Miér", value: false },
+        { name: "Juev", value: false },
+        { name: "Vier", value: false },
+        { name: "Sáb", value: false },
+        { name: "Dom", value: false },
+      ],
+      dosageTimes: "",
     };
   },
   mounted() {
     this.loadData();
   },
-  computed: {},
+  computed: {
+    filterDaysTrue() {
+      let listDays = this.nameOfDays;
+      const filterOfDaysTrue = listDays
+        .filter((i) => {
+          if (i.value === true) {
+            return i.name;
+          }
+        })
+        .map((i) => i.name);
+      return filterOfDaysTrue;
+    },
+  },
   methods: {
+    onClickToReturnListMedicines() {
+      this.$router.push("/medicines");
+    },
+
+    paintDaysSelected(array) {
+      let array1 = this.nameOfDays;
+      for (let day of array) {
+        for (let compare of array1) {
+          if (day === compare.name) {
+            compare.value = true;
+          }
+        }
+      }
+    },
+    medicineChanged(newValue) {
+      this.medicine = newValue;
+    },
+    nameOfDaysChanged(newValue) {
+      this.nameOfDays = newValue;
+    },
+
     isValidInputsMedicine() {
       if (
         this.medicine.name_medicine === "" ||
         this.medicine.type_medicine === "" ||
         this.medicine.description === "" ||
-        this.inputDosage === "" ||
+        this.medicine.dosage.dosages_times ||
         this.medicine.dosage.hour_dosage === "" ||
         this.medicine.dosage.days_dosage === "" ||
         this.medicine.start_date === "" ||
@@ -69,34 +110,24 @@ export default {
         return true;
       }
     },
-    onMedicineChanged(newValue) {
-      this.medicine = newValue;
+    async loadData() {
+      let responseMedicine = await getMedicineById(this.idOfMedicine);
+      this.medicine = responseMedicine;
+      this.dosageTimes = responseMedicine.dosage.dosages_times;
+      let daysReceived = responseMedicine.dosage.days_dosage;
+      this.paintDaysSelected(daysReceived);
     },
 
-    onClickToReturnListMedicines() {
-      this.$router.push("/medicines");
-    },
-    async loadData() {
-      let medicineId = this.$route.params.id;
-      this.medicine = await getMedicineById(medicineId);
-    },
     async onSaveClickedMedicine() {
-      if (!this.isValidInputsMedicine()) {
-        alert("Rellena correctamente los campos");
-        return;
-      }
-      const addMedicine = this.medicine;
-      addMedicine.dosage.dosages_times = `${this.inputDosage} veces por semana`;
-      addMedicine.dosage.days_dosage = this.filterDaysTrue;
-      const settings = {
-        method: "POST",
-        body: JSON.stringify(addMedicine),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      };
-      await fetch(`${config.API_PATH}/medicines`, settings);
-      alert("Tu medicación se ha guardado correctamente");
+      // if (!this.isValidInputsMedicine()) {
+      //   alert("Rellena correctamente los campos");
+      //   return;
+      // }
+
+      this.medicine.dosage.days_dosage = this.filterDaysTrue;
+
+      await updateMedicine(this.medicine);
+      alert("Tu medicación se ha actualizado");
       this.$router.push("/medicines");
     },
   },
