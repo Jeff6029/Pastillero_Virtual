@@ -145,7 +145,7 @@ th {
     font-size: 16px;
   }
 }
-@media screen and (min-width: 1900px) {
+@media screen and (min-width: 1700px) {
   .content-table > table {
     width: 1100px;
     font-size: 18px;
