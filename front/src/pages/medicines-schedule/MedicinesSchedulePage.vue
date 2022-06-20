@@ -11,10 +11,9 @@
         <th>Horas</th>
         <th>Medicinas</th>
       </tr>
-      <tr v-for="number in hours" :key="number">
-        <td class="hour">{{ `${number - 1}` }}:00 hrs.</td>
-        <td>{{ medicineFilterPerHour(number) }}</td>
-        <!-- <td><MedicineList medicines="filterPerHour(number)" /></td> -->
+      <tr v-for="medicine in filteredMedicines" :key="medicine.id">
+        <td>{{ medicine.dosage.hour_dosage }} hrs.</td>
+        <td>{{ medicine.name_medicine }}</td>
       </tr>
     </table>
   </sectionn>
@@ -43,20 +42,6 @@ export default {
   methods: {
     onClickToReturnListMedicines() {
       this.$router.push("/medicines");
-    },
-    medicineFilterPerHour(number) {
-      const listMedicinesPerHour = (medicine) => {
-        let medicineDosageHour = medicine.dosage.hour_dosage.split(":")[0];
-        if (medicineDosageHour === `${number}`) {
-          return medicine;
-        }
-      };
-      const hoursDosage = this.filteredMedicines.filter(listMedicinesPerHour);
-      const namesMedicines = hoursDosage.map(
-        (medicine) => medicine.name_medicine
-      );
-      this.medicinesNamesFiltered = namesMedicines;
-      return namesMedicines;
     },
     async loadData() {
       const allResponse = await getListMedicinesByDate();
@@ -107,8 +92,7 @@ export default {
 table,
 th,
 td {
-  border: 1px solid black;
-  border-collapse: collapse;
+  border-bottom: 1px solid black;
 }
 
 th,
@@ -116,12 +100,13 @@ td {
   padding: 10px;
 }
 
-td:hover {
-  background: #77d5cc;
+tr:hover {
+  background: #78d4cb;
+  color: white;
 }
 
 th {
-  text-align: left;
+  text-align: center;
 }
 .hour {
   width: 10vw;
