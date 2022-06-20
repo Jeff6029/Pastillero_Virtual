@@ -1,21 +1,23 @@
 <template>
   <header class="areTitle">
-    <h1>Horario</h1>
+    <h1>Horario:</h1>
     <button class="btn-back" @click="onClickToReturnListMedicines">
       <i class="fa-solid fa-arrow-rotate-left"></i>
     </button>
   </header>
-  <table>
-    <tr>
-      <th>Horas</th>
-      <th>Medicinas</th>
-    </tr>
-    <tr v-for="number in hours" :key="number">
-      <td class="hour">{{ `${number - 1}` }}:00 hrs.</td>
-      <td>{{ medicineFilterPerHour(number) }}</td>
-      <!-- <td><MedicineList medicines="filterPerHour(number)" /></td> -->
-    </tr>
-  </table>
+  <sectionn class="content-table">
+    <table>
+      <tr>
+        <th>Horas</th>
+        <th>Medicinas</th>
+      </tr>
+      <tr v-for="number in hours" :key="number">
+        <td class="hour">{{ `${number - 1}` }}:00 hrs.</td>
+        <td>{{ medicineFilterPerHour(number) }}</td>
+        <!-- <td><MedicineList medicines="filterPerHour(number)" /></td> -->
+      </tr>
+    </table>
+  </sectionn>
 </template>
 
 <script>
@@ -89,9 +91,17 @@ export default {
   transition: 0.2s all ease-out;
 }
 
-table {
-  width: 80vw;
-  margin: 0 10vw;
+.content-table {
+  margin: 0 auto;
+  max-width: 1200px;
+  display: grid;
+  place-content: center;
+}
+
+.content-table > table {
+  width: 300px;
+  font-size: 12px;
+  border-collapse: collapse;
 }
 
 table,
@@ -106,10 +116,39 @@ td {
   padding: 10px;
 }
 
+td:hover {
+  background: #77d5cc;
+}
+
 th {
   text-align: left;
 }
 .hour {
   width: 10vw;
+}
+
+@media screen and (min-width: 700px) {
+  .content-table > table {
+    width: 450px;
+    font-size: 14px;
+  }
+}
+@media screen and (min-width: 1050px) {
+  .content-table > table {
+    width: 700px;
+    font-size: 15px;
+  }
+}
+@media screen and (min-width: 1320px) {
+  .content-table > table {
+    width: 800px;
+    font-size: 16px;
+  }
+}
+@media screen and (min-width: 1900px) {
+  .content-table > table {
+    width: 1100px;
+    font-size: 18px;
+  }
 }
 </style>
