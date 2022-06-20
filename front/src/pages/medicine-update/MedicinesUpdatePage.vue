@@ -119,11 +119,6 @@ export default {
     },
 
     async onSaveClickedMedicine() {
-      // if (!this.isValidInputsMedicine()) {
-      //   alert("Rellena correctamente los campos");
-      //   return;
-      // }
-
       this.medicine.dosage.days_dosage = this.filterDaysTrue;
 
       await updateMedicine(this.medicine);
