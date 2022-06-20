@@ -1,5 +1,10 @@
 <template>
-  <h1>Aqui va el horario</h1>
+  <header class="areTitle">
+    <h1>Horario</h1>
+    <button class="btn-back" @click="onClickToReturnListMedicines">
+      <i class="fa-solid fa-arrow-rotate-left"></i>
+    </button>
+  </header>
   <table>
     <tr>
       <th>Horas</th>
@@ -11,7 +16,6 @@
       <!-- <td><MedicineList medicines="filterPerHour(number)" /></td> -->
     </tr>
   </table>
-  {{ this.medicinesNamesFiltered }}
 </template>
 
 <script>
@@ -35,6 +39,9 @@ export default {
     },
   },
   methods: {
+    onClickToReturnListMedicines() {
+      this.$router.push("/medicines");
+    },
     medicineFilterPerHour(number) {
       const listMedicinesPerHour = (medicine) => {
         let medicineDosageHour = medicine.dosage.hour_dosage.split(":")[0];
@@ -52,13 +59,36 @@ export default {
     async loadData() {
       const allResponse = await getListMedicinesByDate();
       this.listMedicines = allResponse;
-      console.log(allResponse);
     },
   },
 };
 </script>
 
 <style scoped>
+.areTitle {
+  width: 350px;
+  padding: 0 2.8em;
+  margin: 0.8em auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-back {
+  cursor: pointer;
+  padding: 8px;
+  margin: 1em;
+  background: #e5e9e8;
+  color: black;
+  border-radius: 5px;
+  border: none;
+}
+.btn-back:hover {
+  background: #6dc39c;
+  color: white;
+  transition: 0.2s all ease-out;
+}
+
 table {
   width: 80vw;
   margin: 0 10vw;
