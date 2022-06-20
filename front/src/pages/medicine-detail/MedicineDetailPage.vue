@@ -5,7 +5,7 @@
     <ul>
       <li><span>Tipo:</span> {{ medicine.type_medicine }}</li>
       <li><span>Descripción:</span> {{ medicine.description }}</li>
-      <li><span>Dosis:</span> {{ dosage.dosages_times }} dosis por semana</li>
+      <li><span>Dosis:</span> {{ dosage.dosages_times }} dosis por día</li>
       <button
         v-for="day of nameOfDays"
         :class="{ 'name-of-day': day.value }"

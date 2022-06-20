@@ -40,7 +40,7 @@
         min="0"
         max="7"
       />
-      dosis por semana
+      dosis por día
     </dd>
     <dd class="name-days">
       <button
