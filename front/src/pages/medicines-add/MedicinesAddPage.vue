@@ -1,6 +1,6 @@
 <template>
   <fieldset class="medicines-box">
-    <legend><h1>Añadir Medicina:</h1></legend>
+    <legend><h1>+ Añadir Medicina:</h1></legend>
     <dl class="form-add-medicine">
       <dd>
         <span>Nombre: </span>
