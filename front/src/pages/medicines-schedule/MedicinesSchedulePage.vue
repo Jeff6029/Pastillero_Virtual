@@ -11,9 +11,20 @@
         <th>Horas</th>
         <th>Medicinas</th>
       </tr>
-      <tr v-for="medicine in filteredMedicines" :key="medicine.id">
-        <td>{{ medicine.dosage.hour_dosage }} hrs.</td>
-        <td>{{ medicine.name_medicine }}</td>
+      <tr
+        v-for="medicine in filteredMedicines"
+        :key="medicine.id"
+        class="data-medicine"
+      >
+        <td>
+          {{ medicine.dosage.hour_dosage }}
+          hrs.
+        </td>
+        <td>
+          <span @click="onClickGetMedicineById(medicine.id_medicine)">{{
+            medicine.name_medicine
+          }}</span>
+        </td>
       </tr>
     </table>
   </sectionn>
@@ -26,8 +37,6 @@ export default {
   data() {
     return {
       listMedicines: [],
-      hours: 24,
-      medicinesNamesFiltered: [],
     };
   },
   mounted() {
@@ -46,6 +55,9 @@ export default {
     async loadData() {
       const allResponse = await getListMedicinesByDate();
       this.listMedicines = allResponse;
+    },
+    onClickGetMedicineById(id_medicine) {
+      this.$router.push(`/medicines/${id_medicine}`);
     },
   },
 };
@@ -100,9 +112,12 @@ td {
   padding: 10px;
 }
 
-tr:hover {
+.data-medicine:hover {
   background: #78d4cb;
   color: white;
+}
+span {
+  cursor: pointer;
 }
 
 th {
