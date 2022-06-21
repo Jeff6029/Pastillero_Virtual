@@ -5,7 +5,7 @@
       <label class="form-label" for="#email">Usuario:</label>
       <input
         class="form-input"
-        type="email"
+        type="text"
         id="email"
         required
         placeholder="Introduce usuario"
